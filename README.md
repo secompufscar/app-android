@@ -21,7 +21,7 @@ samples, guidance on mobile development, and a full API reference.
     - ``main.dart`` apenas para iniciar o aplicativo
     - ``colors.dart`` cores padrão da SECOMP 
 - ``/lib/routes``
-    - Cada arquivo nesse dirétório correspondem a uma página
+    - Cada arquivo nesse diretório corresponde a uma página
 - ``/lib/models``
     - Contém as classes com os dados que serão usados no aplicativo
 - ``/lib/components``
