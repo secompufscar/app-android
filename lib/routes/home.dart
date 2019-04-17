@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         shrinkWrap: true,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Text(
               "Notícias",
               style: TextStyle(

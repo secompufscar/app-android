@@ -15,12 +15,18 @@ class NoticiaCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(content),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Icon(Icons.access_time),
-              Text(date),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 4),
+                  child: Icon(Icons.access_time, size: 16,),
+                ),
+                Text(date),
+              ],
+            ),
           ),
         ],
       ),
