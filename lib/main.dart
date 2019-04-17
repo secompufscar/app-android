@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app_secomp/routes/home.dart';
+import 'package:app_secomp/base.dart';
 
 void main() => runApp(AppSecomp());
 
@@ -11,7 +11,7 @@ class AppSecomp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: Base(),
     );
   }
 }

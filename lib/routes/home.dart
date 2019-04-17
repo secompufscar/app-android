@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/components/noticia_card.dart';
 import 'package:app_secomp/models/noticia.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final Widget body = HomePage();
+
   @override
   Widget build(BuildContext context) {
     final List<Noticia> noticias = [
@@ -28,35 +28,27 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return Scaffold(
-      appBar: GradientAppBar(
-        title: Text("X SECOMP"),
-        backgroundColorStart: SecompColors.gradientStart,
-        backgroundColorEnd: SecompColors.gradientEnd,
-      ),
-      drawer: Drawer(),
-      body: ListView(
-        physics: ClampingScrollPhysics(),
-        shrinkWrap: true,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            child: Text(
-              "Notícias",
-              style: TextStyle(
-                fontSize: 24,
-              ),
+    return ListView(
+      physics: ClampingScrollPhysics(),
+      shrinkWrap: true,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          child: Text(
+            "Notícias",
+            style: TextStyle(
+              fontSize: 24,
             ),
           ),
-          ListView.builder(
-            physics: ClampingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: noticias.length,
-            itemBuilder: (BuildContext context, int index) =>
-                _buildListNoticias(index),
-          ),
-        ],
-      ),
+        ),
+        ListView.builder(
+          physics: ClampingScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: noticias.length,
+          itemBuilder: (BuildContext context, int index) =>
+              _buildListNoticias(index),
+        ),
+      ],
     );
   }
 }
