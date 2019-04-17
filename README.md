@@ -17,9 +17,9 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Organização dos diretórios
 
-- ``/lib:`` 
-    - main.dart: apenas para iniciar o aplicativo
-    - colors.dart: cores padrão da SECOMP 
+- ``/lib`` 
+    - ``main.dart`` apenas para iniciar o aplicativo
+    - ``colors.dart`` cores padrão da SECOMP 
 - ``/lib/routes``
     - Cada arquivo nesse dirétório correspondem a uma página
 - ``/lib/models``
