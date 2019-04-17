@@ -19,6 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 - ``/lib:`` 
     - main.dart: apenas para iniciar o aplicativo
+    - base.dart: é o layout base do aplicativo. Contém o Scaffold com AppBar e Drawer
     - colors.dart: cores padrão da SECOMP 
 - ``/lib/routes``
     - Cada arquivo nesse dirétório correspondem a uma página
