@@ -26,7 +26,7 @@ class _BaseState extends State<Base> {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
-            child: Text("Inserir logo da SECOMP"),
+            child: Image(image: AssetImage('assets/logos/colorida-completa.png'), height: 100, width: 100,),
           ),
           ListTile(
             title: Text("Home"),

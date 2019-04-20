@@ -7,10 +7,10 @@ class AnimatedGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tween = MultiTrackTween([
-      Track("color1").add(Duration(seconds: 3),
-          ColorTween(begin: SecompColors.gradientStart, end: SecompColors.gradientEnd)),
-      Track("color2").add(Duration(seconds: 3),
-          ColorTween(begin: SecompColors.gradientEnd, end: SecompColors.gradientStart))
+      Track("color1").add(Duration(seconds: 6),
+          ColorTween(begin: SecompColors.dicas1, end: SecompColors.dicas2)),
+      Track("color2").add(Duration(seconds: 6),
+          ColorTween(begin: SecompColors.dicas2, end: SecompColors.dicas1))
     ]);
 
     return ControlledAnimation(
@@ -21,8 +21,6 @@ class AnimatedGradient extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
                   colors: [animation["color1"], animation["color2"]])),
         );
       },
