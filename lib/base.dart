@@ -3,6 +3,7 @@ import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:app_secomp/routes/home.dart';
 import 'package:app_secomp/routes/blank.dart';
+import 'package:app_secomp/routes/dicas.dart';
 
 class Base extends StatefulWidget {
   @override
@@ -14,11 +15,10 @@ class _BaseState extends State<Base> {
 
   @override
   Widget build(BuildContext context) {
-
     void _updateBody(Widget body) {
       setState(() {
-            _body = body;
-          });
+        _body = body;
+      });
       Navigator.pop(context);
     }
 
@@ -54,10 +54,16 @@ class _BaseState extends State<Base> {
             onTap: () => _updateBody(BlankPage()),
           ),
           ListTile(
-            title: Text("Dicas"),
-            leading: Icon(Icons.lightbulb_outline),
-            onTap: () => _updateBody(BlankPage()),
-          ),
+              title: Text("Dicas"),
+              leading: Icon(Icons.lightbulb_outline),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Dicas(),
+                  ),
+                );
+              }),
           ListTile(
             title: Text("Sobre"),
             leading: Icon(Icons.info),
