@@ -14,7 +14,7 @@ class SecompCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        elevation: 6,
+        elevation: 2,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: this.child,

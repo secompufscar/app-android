@@ -12,12 +12,23 @@ class Base extends StatefulWidget {
 
 class _BaseState extends State<Base> {
   Widget _body = HomePage();
+  String _title = "X SECOMP";
+
+  void _pushTo(Widget page) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => page,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    void _updateBody(Widget body) {
+    void _updatePage(Widget body, {String title: "X SECOMP"}) {
       setState(() {
         _body = body;
+        _title = title;
       });
       Navigator.pop(context);
     }
@@ -26,48 +37,46 @@ class _BaseState extends State<Base> {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
-            child: Image(image: AssetImage('assets/logos/colorida-completa.png'), height: 100, width: 100,),
+            child: Image(
+              image: AssetImage('assets/logos/colorida-completa.png'),
+              height: 100,
+              width: 100,
+            ),
           ),
           ListTile(
             title: Text("Home"),
             leading: Icon(Icons.home),
-            onTap: () => _updateBody(HomePage()),
+            onTap: () => _updatePage(HomePage()),
           ),
           ListTile(
             title: Text("Página do Participante"),
             leading: Icon(Icons.person),
-            onTap: () => _updateBody(BlankPage()),
+            onTap: () => _updatePage(BlankPage(), title: "Página do Participante"),
           ),
           ListTile(
             title: Text("Cronograma"),
             leading: Icon(Icons.calendar_view_day),
-            onTap: () => _updateBody(BlankPage()),
+            onTap: () => _updatePage(BlankPage(), title: "Cronograma"),
           ),
           ListTile(
             title: Text("Equipe"),
             leading: Icon(Icons.people),
-            onTap: () => _updateBody(BlankPage()),
+            onTap: () => _updatePage(BlankPage(), title: "Equipe"),
           ),
           ListTile(
             title: Text("Patriocinadores"),
             leading: Icon(Icons.star),
-            onTap: () => _updateBody(BlankPage()),
+            onTap: () => _updatePage(BlankPage(), title: "Patriocinadores"),
           ),
           ListTile(
-              title: Text("Dicas"),
-              leading: Icon(Icons.lightbulb_outline),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => Dicas(),
-                  ),
-                );
-              }),
+            title: Text("Dicas"),
+            leading: Icon(Icons.lightbulb_outline),
+            onTap: () => _pushTo(Dicas()),
+          ),
           ListTile(
             title: Text("Sobre"),
             leading: Icon(Icons.info),
-            onTap: () => _updateBody(BlankPage()),
+            onTap: () => _updatePage(BlankPage(), title: "Sobre"),
           ),
         ],
       ),
@@ -75,7 +84,7 @@ class _BaseState extends State<Base> {
 
     return Scaffold(
       appBar: GradientAppBar(
-        title: Text("X SECOMP"),
+        title: Text(_title),
         backgroundColorStart: SecompColors.gradientStart,
         backgroundColorEnd: SecompColors.gradientEnd,
       ),
