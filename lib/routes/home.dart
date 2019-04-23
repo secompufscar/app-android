@@ -12,6 +12,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     final List<Noticia> noticias = [
       Noticia("Não percam a melhor SECOMP!!! #MelhorSECOMP #XSECOMP",
           "segundos atras"),

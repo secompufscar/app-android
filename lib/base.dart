@@ -51,7 +51,8 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Página do Participante"),
             leading: Icon(Icons.person),
-            onTap: () => _updatePage(BlankPage(), title: "Página do Participante"),
+            onTap: () =>
+                _updatePage(BlankPage(), title: "Página do Participante"),
           ),
           ListTile(
             title: Text("Cronograma"),
@@ -84,7 +85,10 @@ class _BaseState extends State<Base> {
 
     return Scaffold(
       appBar: GradientAppBar(
-        title: Text(_title),
+        title: Text(
+          _title,
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
         backgroundColorStart: SecompColors.gradientStart,
         backgroundColorEnd: SecompColors.gradientEnd,
       ),
