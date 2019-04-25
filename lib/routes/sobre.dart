@@ -1,3 +1,5 @@
+import 'package:app_secomp/components/logo.dart';
+import 'package:app_secomp/components/text_button.dart';
 import 'package:flutter/material.dart';
 
 class Sobre extends StatelessWidget {
@@ -9,8 +11,7 @@ class Sobre extends StatelessWidget {
         //TOP:
         Padding(
           padding: const EdgeInsets.only(bottom: 16),
-          child:
-              Center(child: Image.asset('assets/logos/colorida-completa.png')),
+          child: Center(child: LogoSeKombi()),
         ),
         Center(
           child: Text(
@@ -36,26 +37,17 @@ class Sobre extends StatelessWidget {
           child: Divider(),
         ),
         //LINKS:
-        Text(
+        TextButton(
           "A SECOMP",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 20,
-          ),
+          action: () => print("a secomp"),
         ),
-        Text(
-          "O Departamento de Computação",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 20,
-          ),
+        TextButton(
+          "O Departamento da Computação",
+          action: () => print("dc"),
         ),
-        Text(
+        TextButton(
           "A UFSCar",
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 20,
-          ),
+          action: () => print("a ufscar"),
         ),
       ],
     );

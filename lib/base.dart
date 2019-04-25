@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'components/logo.dart';
 import 'package:app_secomp/routes/home.dart';
 import 'package:app_secomp/routes/blank.dart';
 import 'package:app_secomp/routes/dicas.dart';
@@ -38,11 +39,7 @@ class _BaseState extends State<Base> {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
-            child: Image(
-              image: AssetImage('assets/logos/colorida-completa.png'),
-              height: 100,
-              width: 100,
-            ),
+            child: LogoSeKombi()
           ),
           ListTile(
             title: Text("Home"),
