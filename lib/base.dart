@@ -4,6 +4,7 @@ import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:app_secomp/routes/home.dart';
 import 'package:app_secomp/routes/blank.dart';
 import 'package:app_secomp/routes/dicas.dart';
+import 'package:app_secomp/routes/sobre.dart';
 
 class Base extends StatefulWidget {
   @override
@@ -77,7 +78,7 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Sobre"),
             leading: Icon(Icons.info),
-            onTap: () => _updatePage(BlankPage(), title: "Sobre"),
+            onTap: () => _updatePage(Sobre(), title: "Sobre"),
           ),
         ],
       ),
