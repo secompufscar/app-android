@@ -70,3 +70,6 @@ flutter:
           weight: 900
         - asset: fonts/Lato/Lato-Black.ttf
           weight: 900
+    - family:  SecompSocial
+      fonts:
+        - asset: fonts/SecompSocial.ttf
