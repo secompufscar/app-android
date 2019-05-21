@@ -3,6 +3,7 @@ import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'components/logo.dart';
 import 'package:app_secomp/routes/home.dart';
+import 'package:app_secomp/routes/home2.dart';
 import 'package:app_secomp/routes/blank.dart';
 import 'package:app_secomp/routes/dicas.dart';
 import 'package:app_secomp/routes/sobre.dart';
@@ -38,13 +39,16 @@ class _BaseState extends State<Base> {
     Drawer _drawer = Drawer(
       child: ListView(
         children: <Widget>[
-          DrawerHeader(
-            child: LogoSeKombi()
-          ),
+          DrawerHeader(child: LogoSeKombi()),
           ListTile(
             title: Text("Home"),
             leading: Icon(Icons.home),
             onTap: () => _updatePage(HomePage()),
+          ),
+          ListTile(
+            title: Text("Exemplo teste"),
+            leading: Icon(Icons.home),
+            onTap: () => _updatePage(HomePage2()),
           ),
           ListTile(
             title: Text("Página do Participante"),
