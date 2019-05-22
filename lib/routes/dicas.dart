@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_secomp/components/dot_indicator.dart';
 import 'package:app_secomp/components/animated_gradient.dart';
+import 'package:flutter/painting.dart';
 
 class Dicas extends StatefulWidget {
   @override
@@ -17,7 +18,28 @@ class _DicasState extends State<Dicas> {
     ConstrainedBox(
       constraints: BoxConstraints.expand(),
       child: Center(
-        child: Text("irst safasfsahfifsfass fasfas"),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Bem vindo a X SECOMP",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image(
+                image: AssetImage("assets/logos/branca-pentagono.png"),
+                height: 200,
+                width: 200,
+              ),
+            )
+          ],
+        ),
       ),
     ),
     ConstrainedBox(

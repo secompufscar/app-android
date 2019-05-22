@@ -2,9 +2,29 @@ import 'package:app_secomp/components/logo.dart';
 import 'package:app_secomp/components/text_button.dart';
 import 'package:app_secomp/icons/secomp_social_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:android_intent/android_intent.dart';
+import 'dart:io' show Platform;
 
 class Sobre extends StatelessWidget {
   final String versao = "1.0.0";
+
+  void _likeOnFacebook() async {
+    if (Platform.isAndroid) {
+    AndroidIntent browserIntent = AndroidIntent(
+      action: 'action_view',
+      data: 'https://www.facebook.com/secompufscar',
+    );
+    AndroidIntent facebookIntent = AndroidIntent(
+      action: 'action_view',
+      data: 'fb://facewebmodal/f?href=https://facebook.com/secompufscar'
+    );
+  try {
+    await facebookIntent.launch();
+  } catch (e) {
+    await browserIntent.launch();
+  }
+}
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +80,7 @@ class Sobre extends StatelessWidget {
           "Siga-nos no Facebook",
           style: TextStyle(fontSize: 16),
           icon: Icon(SecompSocial.facebook_squared),
-          action: () => print("facebook"),
+          action: _likeOnFacebook,
         ),
         TextButton(
           "Siga-nos no Instagram",
