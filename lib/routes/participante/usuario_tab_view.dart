@@ -3,6 +3,13 @@ import 'package:app_secomp/routes/participante/information_item.dart';
 import 'package:app_secomp/components/text_button.dart';
 
 class UsuarioTabView extends StatelessWidget {
+
+  final String _emailValue = "test@gmail.com";
+  final String _nameValue = "João da Silva";
+  final String _birthdayValue = "01/01/2001";
+  final String _institueValue = "UFSCar";
+  final String _courseVale = "Ciência da Computação";
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -10,27 +17,27 @@ class UsuarioTabView extends StatelessWidget {
       children: <Widget>[
         InformationItem(
           category: "Email",
-          value: "test@gmail.com",
+          value: _emailValue,
           icon: Icons.email,
         ),
         InformationItem(
           category: "Nome Completo",
-          value: "João da Silva",
+          value: _nameValue,
           icon: Icons.person,
         ),
         InformationItem(
           category: "Data de Nascimento",
-          value: "01/01/2001",
+          value: _birthdayValue,
           icon: Icons.cake,
         ),
-        InformationItem(
+        InformationItem( 
           category: "Instituição",
-          value: "UFSCar",
+          value: _institueValue,
           icon: Icons.domain,
         ),
         InformationItem(
           category: "Curso",
-          value: "Ciência da Computação",
+          value: _courseVale,
           icon: Icons.school,
         ),
         Divider(),
@@ -43,6 +50,15 @@ class UsuarioTabView extends StatelessWidget {
           action: () {},
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
+        TextButton(
+          "Sair",
+          icon: Icon(
+            Icons.power_settings_new,
+            color: Colors.red,
+          ),
+          action: () {},
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        )
       ],
     );
   }
