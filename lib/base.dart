@@ -7,6 +7,7 @@ import 'package:app_secomp/routes/home2.dart';
 import 'package:app_secomp/routes/blank.dart';
 import 'package:app_secomp/routes/dicas.dart';
 import 'package:app_secomp/routes/sobre.dart';
+import 'package:app_secomp/routes/participante/participante.dart';
 
 class Base extends StatefulWidget {
   @override
@@ -51,10 +52,10 @@ class _BaseState extends State<Base> {
             onTap: () => _updatePage(HomePage2()),
           ),
           ListTile(
-            title: Text("Página do Participante"),
+            title: Text("Área do Participante"),
             leading: Icon(Icons.person),
             onTap: () =>
-                _updatePage(BlankPage(), title: "Página do Participante"),
+                _updatePage(PaginaParticipante(), title: "Área do Participante"),
           ),
           ListTile(
             title: Text("Cronograma"),
