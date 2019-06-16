@@ -14,8 +14,8 @@ Verifique se adicionou a variável de ambiente ``ANDROID_HOME`` e o caminho de i
 Para adicionar, adicione as seguintes linhas no arquivo ``~/.bashrc``:
 
 ```
-export PATH="$PATH:<caminho de instalação do Flutter>
-export ANDROID_HOME="<caminho de instalação do Android SDK>
+export PATH="$PATH":"<caminho de instalação do Flutter>"
+export ANDROID_HOME="<caminho de instalação do Android SDK>"
 ```
 
 Crie o arquivo ``lib/credentials.dart`` e adicione a seguinte linha:
