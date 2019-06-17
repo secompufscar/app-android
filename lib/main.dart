@@ -1,5 +1,5 @@
+import 'package:app_secomp/routes/login.dart';
 import 'package:flutter/material.dart';
-import 'package:app_secomp/base.dart';
 
 void main() => runApp(AppSecomp());
 
@@ -9,10 +9,10 @@ class AppSecomp extends StatelessWidget {
     return MaterialApp(
       title: 'SECOMP',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
         fontFamily: 'Lato',
       ),
-      home: Base(),
+      home: CamposLogin(),
     );
   }
 }
