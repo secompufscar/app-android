@@ -3,6 +3,7 @@ import 'package:app_secomp/components/gradient_button.dart';
 import 'package:app_secomp/base.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/components/logo.dart';
+import 'package:app_secomp/routes/cadastro_webview.dart';
 
 class CamposLogin extends StatefulWidget {
   @override
@@ -114,6 +115,13 @@ class _CamposLoginState extends State<CamposLogin> {
                 children: <Widget>[
                   Text('Não tem conta ?'),
                   new InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CadastroWebView()),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(8),
                     child: new Text(
                       ' Crie uma conta',
                       style: TextStyle(
