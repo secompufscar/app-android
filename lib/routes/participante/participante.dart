@@ -1,3 +1,4 @@
+import 'package:app_secomp/routes/participante/edicoes_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/routes/participante/usuario_tab_view.dart';
 
@@ -47,7 +48,7 @@ class PaginaParticipante extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             UsuarioTabView(),
-            Center(child: Text("Edições")),
+            EdicoesTabView(),
           ],
         ),
       ),
