@@ -1,4 +1,3 @@
-import 'package:app_secomp/components/card.dart';
 import 'package:app_secomp/components/cronograma_card.dart';
 import 'package:app_secomp/models/atividade.dart';
 import 'package:app_secomp/models/ministrante.dart';
@@ -12,12 +11,53 @@ class Cronograma extends StatefulWidget {
 class _CronogramaState extends State<Cronograma> {
   final List<Atividade> listaAtv = [
     Atividade(
-        "Hackeando urna eletrônica",
-        Ministrante("Paulo Matias", "Professor", "UFSCar"),
-        DateTime.now(),
-        DateTime.now(),
+        Tipo.Institucional,
+        "Credenciamento",
+        Ministrante("Secomp UFSCar", "Secomp", "UFSCar"),
+        DateTime(2019, 09, 10, 8, 0),
+        DateTime(2019, 09, 10, 9, 0),
         "Anfiteatro Bento Prado Jr.",
-        "descricao")
+        "descricao"),
+    Atividade(
+        Tipo.Institucional,
+        "Abertura",
+        Ministrante("Secomp UFSCar", "Secomp", "UFSCar"),
+        DateTime(2019, 09, 10, 9, 0),
+        DateTime(2019, 09, 10, 10, 0),
+        "Anfiteatro Bento Prado Jr.",
+        "descricao"),
+    Atividade(
+        Tipo.Palestra,
+        "Crimes Digitais e Computação Forense",
+        Ministrante("Vaine Luiz Barreira", "Professor", "UFSCar"),
+        DateTime(2019, 09, 10, 10, 0),
+        DateTime(2019, 09, 10, 11, 0),
+        "Anfiteatro Bento Prado Jr.",
+        "descricao"),
+    Atividade(
+        Tipo.Palestra,
+        "Homem x Máquina: o impacto da Inteligência Artificial na saúde",
+        Ministrante("Michel Silva Fornaciali", "Professor", "UFSCar"),
+        DateTime(2019, 09, 10, 11, 0),
+        DateTime(2019, 09, 10, 12, 0),
+        "Anfiteatro Bento Prado Jr.",
+        "descricao"),
+    Atividade(
+        Tipo.Coffee,
+        "Coffee-break",
+        Ministrante("","",""),
+        DateTime(2019, 09, 10, 12, 0),
+        DateTime(2019, 09, 10, 12, 30),
+        "Anfiteatro Bento Prado Jr. - anexo",
+        "descricao"),
+    Atividade(
+        Tipo.Workshop,
+        "Workshop Roi Hero",
+        Ministrante("Paulo Waib Castello Branco", "Professor", "UFSCar"),
+        DateTime(2019, 09, 10, 12, 30),
+        DateTime(2019, 09, 10, 14, 0),
+        "Anfiteatro Bento Prado Jr.",
+        "descricao"),
   ];
 
   Widget _buildListAtividades(int index) {
@@ -33,7 +73,7 @@ class _CronogramaState extends State<Cronograma> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Text(
-            "Cronograma",
+            "(navbar do cronograma)",
             style: TextStyle(
               fontSize: 24,
             ),
