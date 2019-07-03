@@ -16,7 +16,7 @@ class CadastroWebView extends StatelessWidget {
         backgroundColorEnd: SecompColors.gradientEnd,
       ),
       body: WebView(
-        initialUrl: "https://google.com.br/"
+        initialUrl: "https://google.com.br/",
       ),
     );
   }

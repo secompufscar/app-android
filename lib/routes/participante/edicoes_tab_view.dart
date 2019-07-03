@@ -23,76 +23,93 @@ class EdicoesTabView extends StatelessWidget {
       Evento e = eventos[index];
 
       return SecompCard(
-        child: Column(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            Row(
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Image.asset(
+                'assets/logos/colorida-pentagono.png',
+                width: 60,
+                height: 60,
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: Image.asset(
-                    'assets/logos/colorida-pentagono.png',
-                    width: 60,
-                    height: 60,
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    e.edicao,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
+                Row(
                   children: <Widget>[
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 4),
+                    //   child: Icon(
+                    //     Icons.calendar_today,
+                    //     size: 18,
+                    //     color: Colors.blueGrey,
+                    //   ),
+                    // ),
                     Text(
-                      e.edicao,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                      "Ano: ${e.ano}",
+                      style: TextStyle(color: Colors.grey),
                     ),
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: Icon(Icons.calendar_today),
-                        ),
-                        Text("Ano: ${e.ano}"),
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 4),
-                          child: Icon(Icons.people),
-                        ),
-                        Text("Inscritos: ${e.inscritos}"),
-                      ],
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 4),
+                    //   child: Icon(
+                    //     Icons.people,
+                    //     size: 18,
+                    //     color: Colors.blueGrey,
+                    //   ),
+                    // ),
+                    Text(
+                      "Inscritos: ${e.inscritos}",
+                      style: TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            Spacer(),
+            Column(
               children: <Widget>[
-                if (e.ativo) ...[
+                if (e.ativo)
                   TextButton(
                     "Inscrever-se",
                     action: () {},
                     icon: Icon(
                       Icons.person_add,
+                      size: 18,
                       color: Colors.green,
                     ),
-                    style: TextStyle(fontSize: 16, color: Colors.green),
+                    style: TextStyle(fontSize: 14, color: Colors.green),
                   )
-                ] else
+                else
                   TextButton(
-                    "Ver Informações",
+                    "Informações",
                     action: () {},
                     icon: Icon(
                       Icons.info,
+                      size: 18,
                       color: Colors.cyan,
                     ),
-                    style: TextStyle(fontSize: 16, color: Colors.cyan),
+                    style: TextStyle(fontSize: 14, color: Colors.cyan),
                   ),
               ],
-            )
+            ),
           ],
         ),
       );
@@ -104,3 +121,4 @@ class EdicoesTabView extends StatelessWidget {
     );
   }
 }
+
