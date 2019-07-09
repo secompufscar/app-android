@@ -2,6 +2,7 @@ import 'package:app_secomp/components/text_button.dart';
 import 'package:app_secomp/models/evento.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/components/card.dart';
+import 'package:app_secomp/routes/participante/inscricao.dart';
 
 class EdicoesTabView extends StatelessWidget {
   @override
@@ -21,6 +22,15 @@ class EdicoesTabView extends StatelessWidget {
 
     Widget _buildCardEvento(int index) {
       Evento e = eventos[index];
+
+      void _abrirInscricao(title) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => Inscricao(title: title),
+          ),
+        );
+      }
 
       return SecompCard(
         child: Row(
@@ -89,7 +99,7 @@ class EdicoesTabView extends StatelessWidget {
                 if (e.ativo)
                   TextButton(
                     "Inscrever-se",
-                    action: () {},
+                    action: () => _abrirInscricao(e.edicao),
                     icon: Icon(
                       Icons.person_add,
                       size: 18,
@@ -121,4 +131,3 @@ class EdicoesTabView extends StatelessWidget {
     );
   }
 }
-
