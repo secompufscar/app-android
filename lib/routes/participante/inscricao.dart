@@ -44,7 +44,6 @@ class _InscricaoState extends State<Inscricao> {
     "GG Masculino",
   ];
 
-
   List<DropdownMenuItem<String>> _buildDropdownItens(List<String> list) {
     List ret = <DropdownMenuItem<String>>[];
     for (var item in list) {
@@ -60,9 +59,9 @@ class _InscricaoState extends State<Inscricao> {
   }
 
   void _atualizaTamanho(String item) {
-   setState(() {
-     _tamanhoSelecionado = item;
-   }); 
+    setState(() {
+      _tamanhoSelecionado = item;
+    });
   }
 
   void _atualizaRestricao(int value) {
@@ -73,7 +72,6 @@ class _InscricaoState extends State<Inscricao> {
 
   @override
   Widget build(BuildContext context) {
-    
     if (_kitSim)
       setState(() {
         _sessaoCamisetas = Column(
@@ -90,7 +88,7 @@ class _InscricaoState extends State<Inscricao> {
                 onChanged: (String item) => _atualizaTamanho(item),
                 hint: Text(_tamanhoSelecionado),
               ),
-            ),            
+            ),
           ],
         );
       });
@@ -145,27 +143,40 @@ class _InscricaoState extends State<Inscricao> {
               padding: const EdgeInsets.all(16.0),
               child: Text("Restrição alimentar:"),
             ),
-            RadioListTile(
-              title: Text("Nenhuma"),
-              value: 0,
-              groupValue: _restricaoSelecionada,
-              onChanged: (int value) => _atualizaRestricao(value),
-            ),
-            RadioListTile(
-              title: Text("Vegetariano"),
-              value: 1,
-              groupValue: _restricaoSelecionada,
-              onChanged: (int value) => _atualizaRestricao(value),
-            ),
-            RadioListTile(
-              title: Text("Vegano"),
-              value: 2,
-              groupValue: _restricaoSelecionada,
-              onChanged: (int value) => _atualizaRestricao(value),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100),
+              child: Column(
+                children: <Widget>[
+                  RadioListTile(
+                    title: Text("Nenhuma"),
+                    value: 0,
+                    groupValue: _restricaoSelecionada,
+                    onChanged: (int value) => _atualizaRestricao(value),
+                  ),
+                  RadioListTile(
+                    title: Text("Vegetariano"),
+                    value: 1,
+                    groupValue: _restricaoSelecionada,
+                    onChanged: (int value) => _atualizaRestricao(value),
+                  ),
+                  RadioListTile(
+                    title: Text("Vegano"),
+                    value: 2,
+                    groupValue: _restricaoSelecionada,
+                    onChanged: (int value) => _atualizaRestricao(value),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: (){},
+        label: Text("Inscreva-se"),
+        icon: Icon(Icons.done),
+        backgroundColor: Colors.cyan,
+      )
     );
   }
 }
