@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:android_intent/android_intent.dart';
 import 'dart:io' show Platform;
 
+import 'package:url_launcher/url_launcher.dart';
+
 class Sobre extends StatelessWidget {
   final String versao = "1.0.0";
 
@@ -64,6 +66,15 @@ class Sobre extends StatelessWidget {
         await browserIntent.launch();
         print("foi pelo browser");
       }
+    }
+  }
+
+  void _sendEmail() async {
+    const url = 'mailto:organizacaosecompufscar@gmail.com?subject=Contato SECOMP';
+    if(await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
     }
   }
 
@@ -148,7 +159,7 @@ class Sobre extends StatelessWidget {
           style: TextStyle(fontSize: 16),
           icon: Icon(Icons.email),
           center: true,
-          action: () => print("email"),
+          action: _sendEmail,
         ),
         Center(
             child: Text(
