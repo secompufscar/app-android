@@ -107,7 +107,7 @@ class _CamposLoginState extends State<CamposLogin> {
                 ),
               ),
               new Padding(
-                padding: new EdgeInsets.only(top: 80, bottom: 80),
+                padding: new EdgeInsets.only(top: 40, bottom: 80),
                 child: loginButton,
               ),
               new Row(
