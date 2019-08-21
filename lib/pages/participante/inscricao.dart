@@ -58,49 +58,58 @@ class Inscricao extends StatelessWidget {
     StreamBuilder _circlesBuilder = StreamBuilder(
         stream: bloc.outKit,
         builder: (context, snapshot) {
-          return Row(
-            mainAxisSize: MainAxisSize.min,
+          if (snapshot.hasData)
+            return Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: _clickSim,
+                  child: SelectCircle(
+                    color: Colors.green,
+                    icon: Icons.check,
+                    text: "SIM",
+                    selected: snapshot.data,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: _clickNao,
+                  child: SelectCircle(
+                    color: Colors.red,
+                    icon: Icons.close,
+                    text: "NÃO",
+                    selected: !snapshot.data,
+                  ),
+                ),
+              ],
+            );
+          else
+            return CircularProgressIndicator();
+        });
+
+    Widget _sessaoCamisetas = StreamBuilder(
+      stream: bloc.outTamanho,
+      builder: (context, snapshot) {
+        if (snapshot.data != null) {
+          return Column(
             children: <Widget>[
-              GestureDetector(
-                onTap: _clickSim,
-                child: SelectCircle(
-                  color: Colors.green,
-                  icon: Icons.check,
-                  text: "SIM",
-                  selected: snapshot.data,
-                ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text("Selecione o tamanho da camiseta"),
               ),
-              GestureDetector(
-                onTap: _clickNao,
-                child: SelectCircle(
-                  color: Colors.red,
-                  icon: Icons.close,
-                  text: "NÃO",
-                  selected: !snapshot.data,
-                ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 100),
+                child: DropdownButton(
+                    isExpanded: true,
+                    items: _buildDropdownItens(_tamanhosCamisetas),
+                    onChanged: (String item) => _atualizaTamanho(item),
+                    hint: Text(snapshot.data)),
               ),
             ],
           );
-        });
-
-    Widget _sessaoCamisetas = Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text("Selecione o tamanho da camiseta"),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 100),
-          child: DropdownButton(
-              isExpanded: true,
-              items: _buildDropdownItens(_tamanhosCamisetas),
-              onChanged: (String item) => _atualizaTamanho(item),
-              hint: StreamBuilder(
-                stream: bloc.outTamanho,
-                builder: (context, snapshot) => Text(snapshot.data),
-              )),
-        ),
-      ],
+        } else {
+          return Container();
+        }
+      },
     );
 
     StreamBuilder _sessaoCamisetasBuilder = StreamBuilder(

@@ -6,7 +6,7 @@ class BlocParticipante extends BlocBase {
 
   // KIT
   bool kit;
-  var _kitController = BehaviorSubject<bool>.seeded(null);
+  var _kitController = BehaviorSubject<bool>.seeded(true);
   Stream<bool> get outKit => _kitController.stream;
   Sink<bool> get inKit => _kitController.sink;
 
@@ -17,7 +17,7 @@ class BlocParticipante extends BlocBase {
 
   // TAMANHO CAMISETA
   String tamanho;
-  var _tamanhoController = BehaviorSubject<String>.seeded("");
+  var _tamanhoController = BehaviorSubject<String>.seeded("Selecione o tamanho");
   Stream<String> get outTamanho => _tamanhoController.stream;
   Sink<String> get inTamanho => _tamanhoController.sink;
 
