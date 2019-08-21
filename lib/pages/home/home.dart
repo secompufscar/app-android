@@ -2,13 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_secomp/components/noticia_card.dart';
 import 'package:app_secomp/models/noticia.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final Widget body = HomePage();
+class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

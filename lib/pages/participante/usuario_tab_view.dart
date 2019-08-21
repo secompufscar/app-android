@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app_secomp/routes/participante/information_item.dart';
+import 'package:app_secomp/pages/participante/information_item.dart';
 import 'package:app_secomp/components/text_button.dart';
 
 class UsuarioTabView extends StatelessWidget {

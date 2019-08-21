@@ -3,12 +3,8 @@ import 'package:app_secomp/models/atividade.dart';
 import 'package:app_secomp/models/ministrante.dart';
 import 'package:flutter/material.dart';
 
-class Cronograma extends StatefulWidget {
-  @override
-  _CronogramaState createState() => _CronogramaState();
-}
+class Cronograma extends StatelessWidget {
 
-class _CronogramaState extends State<Cronograma> {
   final List<Atividade> listaAtv = [
     Atividade(
         Tipo.Institucional,

@@ -1,14 +1,14 @@
-import 'package:app_secomp/routes/cronograma.dart';
+import 'package:app_secomp/pages/cronograma/cronograma.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'components/logo.dart';
-import 'package:app_secomp/routes/home.dart';
-import 'package:app_secomp/routes/home2.dart';
-import 'package:app_secomp/routes/blank.dart';
-import 'package:app_secomp/routes/dicas.dart';
-import 'package:app_secomp/routes/sobre.dart';
-import 'package:app_secomp/routes/participante/participante.dart';
+import 'package:app_secomp/pages/home/home.dart';
+import 'package:app_secomp/pages/home/home2.dart';
+import 'package:app_secomp/pages/blank.dart';
+import 'package:app_secomp/pages/dicas/dicas.dart';
+import 'package:app_secomp/pages/sobre/sobre.dart';
+import 'package:app_secomp/pages/participante/participante.dart';
 
 class Base extends StatefulWidget {
   @override

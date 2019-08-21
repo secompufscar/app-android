@@ -3,14 +3,10 @@ import 'package:app_secomp/components/gradient_button.dart';
 import 'package:app_secomp/base.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/components/logo.dart';
-import 'package:app_secomp/routes/cadastro_webview.dart';
+import 'package:app_secomp/pages/login/cadastro_webview.dart';
 
-class CamposLogin extends StatefulWidget {
-  @override
-  _CamposLoginState createState() => _CamposLoginState();
-}
+class CamposLogin extends StatelessWidget {
 
-class _CamposLoginState extends State<CamposLogin> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   BoxDecoration myBoxDecoration() {
@@ -107,7 +103,7 @@ class _CamposLoginState extends State<CamposLogin> {
                 ),
               ),
               new Padding(
-                padding: new EdgeInsets.only(top: 40, bottom: 80),
+                padding: new EdgeInsets.only(top: 80, bottom: 80),
                 child: loginButton,
               ),
               new Row(

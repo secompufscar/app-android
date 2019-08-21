@@ -2,7 +2,7 @@ import 'package:app_secomp/components/text_button.dart';
 import 'package:app_secomp/models/evento.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/components/card.dart';
-import 'package:app_secomp/routes/participante/inscricao.dart';
+import 'package:app_secomp/pages/participante/inscricao.dart';
 
 class EdicoesTabView extends StatelessWidget {
   @override
