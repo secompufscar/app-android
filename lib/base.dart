@@ -1,4 +1,5 @@
 import 'package:app_secomp/pages/cronograma/cronograma.dart';
+import 'package:app_secomp/pages/mapa/map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -51,6 +52,11 @@ class _BaseState extends State<Base> {
             title: Text("Exemplo teste"),
             leading: Icon(Icons.home),
             onTap: () => _updatePage(HomePage2()),
+          ),
+          ListTile(
+            title: Text("Exemplo Mapa"),
+            leading: Icon(Icons.home),
+            onTap: () => _updatePage(MapWidget()),
           ),
           ListTile(
             title: Text("Área do Participante"),

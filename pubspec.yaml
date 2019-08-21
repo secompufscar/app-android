@@ -31,6 +31,7 @@ dependencies:
   url_launcher: ^5.0.5
   bloc_pattern: ^2.2.3
   rxdart: ^0.22.0
+  google_maps_flutter: ^0.4.0
 
 dev_dependencies:
   flutter_test:
