@@ -1,3 +1,4 @@
+import 'package:app_secomp/pages/cronograma/bloc_cronograma.dart';
 import 'package:app_secomp/pages/login/login.dart';
 import 'package:app_secomp/pages/participante/bloc_participante.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -16,6 +17,7 @@ class AppSecomp extends StatelessWidget {
       ),
       blocs: [
         Bloc((i) => BlocParticipante()),
+        Bloc((i) => BlocCronograma()),
       ],
     );
   }
