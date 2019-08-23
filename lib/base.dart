@@ -1,5 +1,6 @@
 import 'package:app_secomp/pages/cronograma/cronograma.dart';
-import 'package:app_secomp/pages/mapa/map_widget.dart';
+import 'package:app_secomp/pages/intro/intro.dart';
+import 'package:app_secomp/components/map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -82,7 +83,7 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Dicas"),
             leading: Icon(Icons.lightbulb_outline),
-            onTap: () => _pushTo(Dicas()),
+            onTap: () => _pushTo(Intro()),
           ),
           ListTile(
             title: Text("Sobre"),

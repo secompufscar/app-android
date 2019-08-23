@@ -61,14 +61,6 @@ class EdicoesTabView extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    // Padding(
-                    //   padding: const EdgeInsets.only(right: 4),
-                    //   child: Icon(
-                    //     Icons.calendar_today,
-                    //     size: 18,
-                    //     color: Colors.blueGrey,
-                    //   ),
-                    // ),
                     Text(
                       "Ano: ${e.ano}",
                       style: TextStyle(color: Colors.grey),
@@ -77,14 +69,6 @@ class EdicoesTabView extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    // Padding(
-                    //   padding: const EdgeInsets.only(right: 4),
-                    //   child: Icon(
-                    //     Icons.people,
-                    //     size: 18,
-                    //     color: Colors.blueGrey,
-                    //   ),
-                    // ),
                     Text(
                       "Inscritos: ${e.inscritos}",
                       style: TextStyle(color: Colors.grey),
