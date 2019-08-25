@@ -8,7 +8,6 @@ import 'components/logo.dart';
 import 'package:app_secomp/pages/home/home.dart';
 import 'package:app_secomp/pages/home/home2.dart';
 import 'package:app_secomp/pages/blank.dart';
-import 'package:app_secomp/pages/dicas/dicas.dart';
 import 'package:app_secomp/pages/sobre/sobre.dart';
 import 'package:app_secomp/pages/participante/participante.dart';
 
@@ -29,6 +28,8 @@ class _BaseState extends State<Base> {
       ),
     );
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class _BaseState extends State<Base> {
             title: Text("Área do Participante"),
             leading: Icon(Icons.person),
             onTap: () =>
-                _updatePage(PaginaParticipante(), title: "Área do Participante"),
+                _updatePage(ParticipanteScreen(), title: "Área do Participante"),
           ),
           ListTile(
             title: Text("Cronograma"),

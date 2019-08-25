@@ -84,7 +84,7 @@ class _IntroState extends State<Intro> {
               ),
               Spacer(),
               Text(
-                "Mincursos",
+                "Minicursos",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
@@ -156,12 +156,12 @@ class _IntroState extends State<Intro> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextButton(
-              "Entrar depois",
+              "Não quero entrar agora",
               style: TextStyle(fontSize: 14),
               action: () => _pushTo(Base()),
             ),
             FloatingActionButton.extended(
-              label: Text("Entre agora!"),
+              label: Text("Entre com sua conta!"),
               icon: Icon(Icons.account_circle),
               onPressed: () => _pushTo(CamposLogin()),
             ),
