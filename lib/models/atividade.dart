@@ -28,14 +28,22 @@ class Atividade {
       tipo = Tipo.Palestra;
     }
 
+    String nomeMinistrante;
+
+    if(json['ministrantes'].length > 0) {
+      nomeMinistrante = json['ministrantes'][0];
+    } else {
+      nomeMinistrante = " teste ";
+    }
+
     return Atividade(
       tipo: tipo,
       titulo: json['titulo'],
-      ministrante: Ministrante(json['ministrantes'][0], "Teste", "TEST"),
+      ministrante: Ministrante(nomeMinistrante, "Teste", "TEST"),
       local: json['local'],
       descricao: json['descricao'],
-      inicio: DateTime(2019, 09, 10, 8, 0),
-      fim: DateTime(2019, 09, 10, 9, 0),
+      inicio: DateTime.parse(json['inicio']),
+      fim:  DateTime.parse(json['fim']),
     );
   }
 }

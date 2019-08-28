@@ -29,8 +29,6 @@ class _BaseState extends State<Base> {
     );
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     void _updatePage(Widget body, {String title: "X SECOMP"}) {
@@ -44,7 +42,17 @@ class _BaseState extends State<Base> {
     Drawer _drawer = Drawer(
       child: ListView(
         children: <Widget>[
-          DrawerHeader(child: LogoSeKombi()),
+          DrawerHeader(
+              child: Image.network("https://picsum.photos/id/11/250/250",
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent loadingProgress) {
+            if (loadingProgress == null) {
+              return child;
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          })),
           ListTile(
             title: Text("Home"),
             leading: Icon(Icons.home),
@@ -63,8 +71,8 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Área do Participante"),
             leading: Icon(Icons.person),
-            onTap: () =>
-                _updatePage(ParticipanteScreen(), title: "Área do Participante"),
+            onTap: () => _updatePage(ParticipanteScreen(),
+                title: "Área do Participante"),
           ),
           ListTile(
             title: Text("Cronograma"),

@@ -1,6 +1,6 @@
 class Noticia {
   final String content;
-  final String date;
+  final DateTime date;
 
   Noticia(this.content, this.date);
 }

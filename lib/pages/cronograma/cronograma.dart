@@ -69,7 +69,6 @@ class Cronograma extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     bloc.fetchAtividades();
 
     return ListView(
@@ -86,17 +85,21 @@ class Cronograma extends StatelessWidget {
           ),
         ),
         StreamBuilder(
-          stream: bloc.outAtividades,
-          builder: (context, snapshot) => snapshot.hasData
-              ? ListView.builder(
-                  physics: ClampingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (BuildContext context, int index) =>
-                      _buildListAtividades(index, snapshot.data),
-                )
-              : Center(child: CircularProgressIndicator()),
-        ),
+            stream: bloc.outAtividades,
+            builder: (context, snapshot) => snapshot.hasData
+                ? ListView.builder(
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) =>
+                        _buildListAtividades(index, snapshot.data),
+                  )
+                : snapshot.hasError
+                    ? Center(
+                        child: Text("Ocorreu algum erro :( \n Tente Novamente"))
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      )),
       ],
     );
   }
