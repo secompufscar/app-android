@@ -5,25 +5,77 @@ import 'package:flutter/material.dart';
 import 'package:android_intent/android_intent.dart';
 import 'dart:io' show Platform;
 
+import 'package:url_launcher/url_launcher.dart';
+
 class Sobre extends StatelessWidget {
   final String versao = "1.0.0";
 
   void _likeOnFacebook() async {
     if (Platform.isAndroid) {
-    AndroidIntent browserIntent = AndroidIntent(
-      action: 'action_view',
-      data: 'https://www.facebook.com/secompufscar',
-    );
-    AndroidIntent facebookIntent = AndroidIntent(
-      action: 'action_view',
-      data: 'fb://facewebmodal/f?href=https://facebook.com/secompufscar'
-    );
-  try {
-    await facebookIntent.launch();
-  } catch (e) {
-    await browserIntent.launch();
+      AndroidIntent browserIntent = AndroidIntent(
+        action: 'action_view',
+        data: 'https://www.facebook.com/secompufscar',
+      );
+      AndroidIntent facebookIntent = AndroidIntent(
+          action: 'action_view',
+          data: 'fb://facewebmodal/f?href=https://facebook.com/secompufscar');
+      try {
+        await facebookIntent.launch();
+        print("foi pelo face");
+      } catch (e) {
+        await browserIntent.launch();
+        print("foi pelo browser");
+      }
+    }
   }
-}
+
+  void _likeOnInstagram() async {
+    if (Platform.isAndroid) {
+      AndroidIntent browserIntent = AndroidIntent(
+        action: 'action_view',
+        data: 'https://www.instagram.com/secompufscar',
+      );
+      AndroidIntent instagramIntent = AndroidIntent(
+          package: "com.instagram.android",
+          action: 'action_view',
+          data: 'https://instagram.com/_u/secompufscar');
+      try {
+        await instagramIntent.launch();
+        print("foi pelo insta");
+      } catch (e) {
+        await browserIntent.launch();
+        print("foi pelo browser");
+      }
+    }
+  }
+
+  void _likeOnTwitter() async {
+    if (Platform.isAndroid) {
+      AndroidIntent browserIntent = AndroidIntent(
+        action: 'action_view',
+        data: 'https://twitter.com/secompufscar',
+      );
+      AndroidIntent twitterIntent = AndroidIntent(
+          package: "com.twitter.android",
+          action: 'action_view',
+          data: 'twitter://user?user=secompufscar');
+      try {
+        await twitterIntent.launch();
+        print("foi pelo twitter");
+      } catch (e) {
+        await browserIntent.launch();
+        print("foi pelo browser");
+      }
+    }
+  }
+
+  void _sendEmail() async {
+    const url = 'mailto:organizacaosecompufscar@gmail.com?subject=Contato SECOMP';
+    if(await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -86,13 +138,13 @@ class Sobre extends StatelessWidget {
           "Siga-nos no Instagram",
           icon: Icon(SecompSocial.instagram),
           style: TextStyle(fontSize: 16),
-          action: () => print("instagram"),
+          action: _likeOnInstagram,
         ),
         TextButton(
           "Siga-nos no Twitter",
           style: TextStyle(fontSize: 16),
           icon: Icon(SecompSocial.twitter),
-          action: () => print("twitter"),
+          action: _likeOnTwitter,
         ),
         divisao,
         Center(
@@ -107,7 +159,7 @@ class Sobre extends StatelessWidget {
           style: TextStyle(fontSize: 16),
           icon: Icon(Icons.email),
           center: true,
-          action: () => print("email"),
+          action: _sendEmail,
         ),
         Center(
             child: Text(

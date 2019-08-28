@@ -31,7 +31,8 @@ dependencies:
   provider: ^3.0.0
   flutter_spinkit: ^ 3.1.0
   progress_indicators: ^ 0.1.2
-
+  webview_flutter:  ^0.3.9
+  url_launcher: ^5.0.5
 
 dev_dependencies:
   flutter_test:

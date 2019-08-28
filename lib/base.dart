@@ -1,3 +1,4 @@
+import 'package:app_secomp/routes/cronograma.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -61,7 +62,7 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Cronograma"),
             leading: Icon(Icons.calendar_view_day),
-            onTap: () => _updatePage(BlankPage(), title: "Cronograma"),
+            onTap: () => _updatePage(Cronograma(), title: "Cronograma"),
           ),
           ListTile(
             title: Text("Equipe"),
