@@ -10,6 +10,7 @@ import 'package:app_secomp/pages/home/home2.dart';
 import 'package:app_secomp/pages/blank.dart';
 import 'package:app_secomp/pages/sobre/sobre.dart';
 import 'package:app_secomp/pages/participante/participante.dart';
+import 'package:app_secomp/pages/patrocinadores/patrocinadores.dart';
 
 class Base extends StatefulWidget {
   @override
@@ -42,17 +43,7 @@ class _BaseState extends State<Base> {
     Drawer _drawer = Drawer(
       child: ListView(
         children: <Widget>[
-          DrawerHeader(
-              child: Image.network("https://picsum.photos/id/11/250/250",
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent loadingProgress) {
-            if (loadingProgress == null) {
-              return child;
-            }
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          })),
+          DrawerHeader(child: LogoSeKombi()),
           ListTile(
             title: Text("Home"),
             leading: Icon(Icons.home),
@@ -85,9 +76,9 @@ class _BaseState extends State<Base> {
             onTap: () => _updatePage(BlankPage(), title: "Equipe"),
           ),
           ListTile(
-            title: Text("Patriocinadores"),
+            title: Text("Patrocinadores"),
             leading: Icon(Icons.star),
-            onTap: () => _updatePage(BlankPage(), title: "Patriocinadores"),
+            onTap: () => _updatePage(Patrocinadores(), title: "Patrocinadores"),
           ),
           ListTile(
             title: Text("Dicas"),
