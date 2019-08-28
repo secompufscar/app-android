@@ -8,6 +8,7 @@ import 'package:app_secomp/routes/home2.dart';
 import 'package:app_secomp/routes/blank.dart';
 import 'package:app_secomp/routes/dicas.dart';
 import 'package:app_secomp/routes/sobre.dart';
+import 'package:app_secomp/routes/patrocinadores.dart';
 import 'package:app_secomp/routes/participante/participante.dart';
 
 class Base extends StatefulWidget {
@@ -69,9 +70,9 @@ class _BaseState extends State<Base> {
             onTap: () => _updatePage(BlankPage(), title: "Equipe"),
           ),
           ListTile(
-            title: Text("Patriocinadores"),
+            title: Text("Patrocinadores"),
             leading: Icon(Icons.star),
-            onTap: () => _updatePage(BlankPage(), title: "Patriocinadores"),
+            onTap: () => _updatePage(Patrocinadores(), title: "Patrocinadores"),
           ),
           ListTile(
             title: Text("Dicas"),
