@@ -1,8 +1,10 @@
 import 'dart:math';
 
-import 'package:app_secomp/routes/login.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/routes/button_patrocionadores.dart';
+import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 final List<String> patrocinadoresPrata = <String> ['https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250', 'https://picsum.photos/id/11/250/250'];
 final List<String> patrocinadoresOuro = <String>['https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250', 'https://picsum.photos/id/10/250/250'];
@@ -55,6 +57,7 @@ class _PatrocinadoresState extends State<Patrocinadores>{
 
   @override
   Widget build(BuildContext context){
+
     return Scaffold(
         body: Container(
           child: Column(
@@ -72,13 +75,8 @@ class _PatrocinadoresState extends State<Patrocinadores>{
   }
 }
 
-Expanded inicializacao(int tam, List<String> listLinks){
-
-//todo: fazer o loading enquanto carregam as imagens
-
-  if(tam == 0){
-    return Expanded(
-    child: ListView.separated(
+ListView imageList(List<String> listLinks){
+  return ListView.separated(
                 itemCount: patrocinadoresDiamente.length,
                 itemBuilder: (BuildContext context, int index) { 
                 return Container(
@@ -90,75 +88,23 @@ Expanded inicializacao(int tam, List<String> listLinks){
                         padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
                         height: 140,
                         width: 170,
-                        child: Image.network('${patrocinadoresDiamente[index]}')   
+                        child: Center(
+                          child: CachedNetworkImage(
+                            imageUrl: '${listLinks[index]}',
+                            placeholder: (context,url) => SpinKitHourGlass(color: Colors.greenAccent),
+                          ),
+                        ),  
                      ),
                       Container(
                        padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
                         height: 140,
                         width: 170,
-                        child: Image.network('${patrocinadoresDiamente[index]}')
-                      ),
-                  ]
-                ),
-                );
-            },
-            separatorBuilder: (BuildContext context, int index) => const Divider(height: 0, indent: 0,),
-      ),
-    flex: 6,
-    );
-  }else{
-    return Expanded(
-      child: ListView.separated(
-                itemCount: tam,
-                itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                     Container(
-                        padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
-                        height: 140,
-                        width: 170,
-                        child: Image.network('${listLinks[index]}')   
-                     ),
-                      Container(
-                       padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
-                        height: 140,
-                        width: 170,
-                        child: Image.network('${listLinks[index]}')
-                      ),
-                  ]
-                ),
-                );
-            },
-            separatorBuilder: (BuildContext context, int index) => const Divider(height: 0, indent: 0,),
-      ),
-      flex: 6,
-            );
-  }
-}
-
-ListView exibirLista(int tam, List<String> listLinks){
-  child: ListView.separated(
-                itemCount: tam,
-                itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                     Container(
-                        padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
-                        height: 140,
-                        width: 170,
-                        child: Image.network('${listLinks[index]}')   
-                     ),
-                      Container(
-                       padding: EdgeInsetsDirectional.only(top: 5, bottom: 5),
-                        height: 140,
-                        width: 170,
-                        child: Image.network('${listLinks[index]}')
+                        child: Center(
+                          child: CachedNetworkImage(
+                         imageUrl: '${listLinks[index]}',
+                          placeholder: (context,url) => SpinKitHourGlass(color: Colors.greenAccent),
+                          )
+                        ),
                       ),
                   ]
                 ),
@@ -166,4 +112,19 @@ ListView exibirLista(int tam, List<String> listLinks){
             },
             separatorBuilder: (BuildContext context, int index) => const Divider(height: 0, indent: 0,),
       );
+}
+
+Expanded inicializacao(int tam, List<String> listLinks){
+
+  if(tam == 0){ 
+    return Expanded(
+          child: imageList(patrocinadoresDiamente),
+    flex: 6,
+    );
+  }else{
+    return Expanded(
+      child: imageList(listLinks),
+      flex: 6,
+            );
+  }
 }
