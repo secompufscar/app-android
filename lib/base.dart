@@ -1,14 +1,15 @@
-import 'package:app_secomp/routes/cronograma.dart';
+import 'package:app_secomp/pages/cronograma/cronograma.dart';
+import 'package:app_secomp/pages/intro/intro.dart';
+import 'package:app_secomp/components/map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'components/logo.dart';
-import 'package:app_secomp/routes/home.dart';
-import 'package:app_secomp/routes/home2.dart';
-import 'package:app_secomp/routes/blank.dart';
-import 'package:app_secomp/routes/dicas.dart';
-import 'package:app_secomp/routes/sobre.dart';
-import 'package:app_secomp/routes/participante/participante.dart';
+import 'package:app_secomp/pages/home/home.dart';
+import 'package:app_secomp/pages/home/home2.dart';
+import 'package:app_secomp/pages/blank.dart';
+import 'package:app_secomp/pages/sobre/sobre.dart';
+import 'package:app_secomp/pages/participante/participante.dart';
 
 class Base extends StatefulWidget {
   @override
@@ -41,7 +42,17 @@ class _BaseState extends State<Base> {
     Drawer _drawer = Drawer(
       child: ListView(
         children: <Widget>[
-          DrawerHeader(child: LogoSeKombi()),
+          DrawerHeader(
+              child: Image.network("https://picsum.photos/id/11/250/250",
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent loadingProgress) {
+            if (loadingProgress == null) {
+              return child;
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          })),
           ListTile(
             title: Text("Home"),
             leading: Icon(Icons.home),
@@ -53,10 +64,15 @@ class _BaseState extends State<Base> {
             onTap: () => _updatePage(HomePage2()),
           ),
           ListTile(
+            title: Text("Exemplo Mapa"),
+            leading: Icon(Icons.home),
+            onTap: () => _updatePage(MapWidget()),
+          ),
+          ListTile(
             title: Text("Área do Participante"),
             leading: Icon(Icons.person),
-            onTap: () =>
-                _updatePage(PaginaParticipante(), title: "Área do Participante"),
+            onTap: () => _updatePage(ParticipanteScreen(),
+                title: "Área do Participante"),
           ),
           ListTile(
             title: Text("Cronograma"),
@@ -76,7 +92,7 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Dicas"),
             leading: Icon(Icons.lightbulb_outline),
-            onTap: () => _pushTo(Dicas()),
+            onTap: () => _pushTo(Intro()),
           ),
           ListTile(
             title: Text("Sobre"),
