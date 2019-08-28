@@ -29,13 +29,6 @@ class APIHelper {
     }
   }
 
-  List<News> parseNews(String body) {
-    final parsed = json.decode(body);
-    return (parsed["articles"] as List)
-        .map<News>((json) => new News.fromJson(json))
-        .toList();
-  }
-
   Future<List<Atividade>> getAtividades() async {
     String url = BASE_URL + "/api/atividades/10";
     final response = await dio.get(
