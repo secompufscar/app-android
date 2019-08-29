@@ -6,10 +6,7 @@ import 'package:app_secomp/models/noticia.dart';
 import 'bloc_home.dart';
 
 class HomePage extends StatelessWidget {
-  
   final BlocHome bloc = BlocProvider.getBloc<BlocHome>();
-
-
 
   String getTime(DateTime time) {
     Duration difference = DateTime.now().difference(time);
@@ -36,6 +33,8 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    bloc.loadNoticias();
+
     return ListView(
       physics: ClampingScrollPhysics(),
       shrinkWrap: true,
@@ -51,16 +50,16 @@ class HomePage extends StatelessWidget {
         ),
         StreamBuilder(
             stream: bloc.outNoticias,
-            builder: (context, snapshot) {
-              return ListView.builder(
-                reverse: true,
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    _buildListNoticias(snapshot.data, index),
-              );
-            }),
+            builder: (context, snapshot) => snapshot.hasData
+                ? ListView.builder(
+                    reverse: true,
+                    physics: ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) =>
+                        _buildListNoticias(snapshot.data, index),
+                  )
+                : Center(child: CircularProgressIndicator())),
       ],
     );
   }

@@ -3,6 +3,10 @@ import 'package:app_secomp/components/text_button.dart';
 import 'package:app_secomp/icons/secomp_social_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:android_intent/android_intent.dart';
+import 'package:app_secomp/pages/sobre/sobre_ufscar.dart';
+import 'package:app_secomp/pages/sobre/sobre_dc.dart';
+import 'package:app_secomp/pages/sobre/sobre_secomp.dart';
+
 import 'dart:io' show Platform;
 
 import 'package:url_launcher/url_launcher.dart';
@@ -70,8 +74,9 @@ class Sobre extends StatelessWidget {
   }
 
   void _sendEmail() async {
-    const url = 'mailto:organizacaosecompufscar@gmail.com?subject=Contato SECOMP';
-    if(await canLaunch(url)) {
+    const url =
+        'mailto:organizacaosecompufscar@gmail.com?subject=Contato SECOMP';
+    if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Could not launch $url';
@@ -115,18 +120,15 @@ class Sobre extends StatelessWidget {
         //LINKS:
         // os prints são apenas para ter uma action (serve também para testar)
         // depois serão substituídas pela ação real.
-        TextButton(
-          "A SECOMP",
-          action: () => print("a secomp"),
-        ),
-        TextButton(
-          "O Departamento da Computação",
-          action: () => print("dc"),
-        ),
-        TextButton(
-          "A UFSCar",
-          action: () => print("a ufscar"),
-        ),
+        TextButton("A SECOMP",
+            action: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SobreSecomp()))),
+        TextButton("O Departamento da Computação",
+            action: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => SobreDC()))),
+        TextButton("A UFSCar",
+            action: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SobreUfscar()))),
         divisao,
         TextButton(
           "Siga-nos no Facebook",
