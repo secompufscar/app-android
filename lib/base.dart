@@ -1,6 +1,11 @@
 import 'package:app_secomp/pages/cronograma/cronograma.dart';
+import 'package:app_secomp/pages/home/bloc_home.dart';
 import 'package:app_secomp/pages/intro/intro.dart';
 import 'package:app_secomp/components/map_widget.dart';
+import 'package:app_secomp/util/message_handler.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
@@ -20,6 +25,42 @@ class Base extends StatefulWidget {
 class _BaseState extends State<Base> {
   Widget _body = HomePage();
   String _title = "X SECOMP";
+  final Firestore _db = Firestore.instance;
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+
+  final BlocHome _blocHome = BlocProvider.getBloc<BlocHome>();
+
+  @override
+  void initState() {
+    _fcm.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+        showBottomSheet(
+          context: context,
+          builder: (context) => Container(
+            height: 80,
+            color: Colors.white,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(message['notification']['title']),
+                Text(message['notification']['body']),
+              ],
+            ),
+          ),
+        );
+        _blocHome.loadNoticias();
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        // TODO optional
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        // TODO optional
+      },
+    );
+  }
 
   void _pushTo(Widget page) {
     Navigator.push(
@@ -32,6 +73,8 @@ class _BaseState extends State<Base> {
 
   @override
   Widget build(BuildContext context) {
+    
+
     void _updatePage(Widget body, {String title: "X SECOMP"}) {
       setState(() {
         _body = body;
@@ -39,6 +82,8 @@ class _BaseState extends State<Base> {
       });
       Navigator.pop(context);
     }
+
+    _blocHome.loadNoticias();
 
     Drawer _drawer = Drawer(
       child: ListView(

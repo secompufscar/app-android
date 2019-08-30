@@ -24,8 +24,9 @@ class BlocHome extends BlocBase {
           ),
         ),
       );
-      // print("Data: $data");
     });
+
+    temp.sort((a,b) => a.date.compareTo(b.date));
 
     inNoticias.add(noticiasController.value = temp);
     print("acabou");
