@@ -1,106 +1,219 @@
-import 'package:app_secomp/components/cronograma_card.dart';
+import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/models/atividade.dart';
 import 'package:app_secomp/models/ministrante.dart';
 import 'package:app_secomp/pages/cronograma/bloc_cronograma.dart';
+import 'package:app_secomp/pages/cronograma/list_widget.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
+
 
 class Cronograma extends StatelessWidget {
-  // final List<Atividade> listaAtv = [
-  //   Atividade(
-  //       Tipo.Institucional,
-  //       "Credenciamento",
-  //       Ministrante("Secomp UFSCar", "Secomp", "UFSCar"),
-  //       DateTime(2019, 09, 10, 8, 0),
-  //       DateTime(2019, 09, 10, 9, 0),
-  //       "Anfiteatro Bento Prado Jr.",
-  //       "descricao"),
-  //   Atividade(
-  //       Tipo.Institucional,
-  //       "Abertura",
-  //       Ministrante("Secomp UFSCar", "Secomp", "UFSCar"),
-  //       DateTime(2019, 09, 10, 9, 0),
-  //       DateTime(2019, 09, 10, 10, 0),
-  //       "Anfiteatro Bento Prado Jr.",
-  //       "descricao"),
-  //   Atividade(
-  //       Tipo.Palestra,
-  //       "Crimes Digitais e Computação Forense",
-  //       Ministrante("Vaine Luiz Barreira", "Professor", "UFSCar"),
-  //       DateTime(2019, 09, 10, 10, 0),
-  //       DateTime(2019, 09, 10, 11, 0),
-  //       "Anfiteatro Bento Prado Jr.",
-  //       "descricao"),
-  //   Atividade(
-  //       Tipo.Palestra,
-  //       "Homem x Máquina: o impacto da Inteligência Artificial na saúde",
-  //       Ministrante("Michel Silva Fornaciali", "Professor", "UFSCar"),
-  //       DateTime(2019, 09, 10, 11, 0),
-  //       DateTime(2019, 09, 10, 12, 0),
-  //       "Anfiteatro Bento Prado Jr.",
-  //       "descricao"),
-  //   Atividade(
-  //       Tipo.Coffee,
-  //       "Coffee-break",
-  //       Ministrante("","",""),
-  //       DateTime(2019, 09, 10, 12, 0),
-  //       DateTime(2019, 09, 10, 12, 30),
-  //       "Anfiteatro Bento Prado Jr. - anexo",
-  //       "descricao"),
-  //   Atividade(
-  //       Tipo.Workshop,
-  //       "Workshop Roi Hero",
-  //       Ministrante("Paulo Waib Castello Branco", "Professor", "UFSCar"),
-  //       DateTime(2019, 09, 10, 12, 30),
-  //       DateTime(2019, 09, 10, 14, 0),
-  //       "Anfiteatro Bento Prado Jr.",
-  //       "descricao"),
-  // ];
+  static final List<Atividade> listaAtv = [
+    Atividade(
+        tipo: Tipo.Institucional,
+        titulo: "Credenciamento",
+        ministrante: Ministrante("Secomp UFSCar", "Secomp", "UFSCar"),
+        inicio: DateTime.parse("2019-09-09 08:00:00"),
+        fim: DateTime.parse("2019-09-09 09:00:00"),
+        local: "Anfiteatro Bento Prado Jr.",
+        descricao: "descricao"),
+    Atividade(
+        tipo: Tipo.Institucional,
+        titulo: "Abertura",
+        ministrante: Ministrante("Secomp UFSCar", "Secomp", "UFSCar"),
+        inicio: DateTime.parse("2019-09-09 09:00:00"),
+        fim: DateTime.parse("2019-09-09 10:00:00"),
+        local: "Anfiteatro Bento Prado Jr.",
+        descricao: "descricao"),
+    Atividade(
+        tipo: Tipo.Palestra,
+        titulo: "Crimes Digitais e Computação Forense",
+        ministrante: Ministrante("Vaine Luiz Barreira", "Professor", "UFSCar"),
+        inicio: DateTime.parse("2019-09-10 08:00:00"),
+        fim: DateTime.parse("2019-09-10 09:00:00"),
+        local: "Anfiteatro Bento Prado Jr.",
+        descricao: "descricao"),
+    Atividade(
+        tipo: Tipo.Palestra,
+        titulo:
+            "Homem x Máquina: o impacto da Inteligência Artificial na saúde",
+        ministrante:
+            Ministrante("Michel Silva Fornaciali", "Professor", "UFSCar"),
+        inicio: DateTime.parse("2019-09-11 08:00:00"),
+        fim: DateTime.parse("2019-09-11 09:00:00"),
+        local: "Anfiteatro Bento Prado Jr.",
+        descricao: "descricao"),
+    Atividade(
+        tipo: Tipo.Coffee,
+        titulo: "Coffee-break",
+        ministrante: Ministrante("", "", ""),
+        inicio: DateTime.parse("2019-09-11 12:00:00"),
+        fim: DateTime.parse("2019-09-11 13:00:00"),
+        local: "Anfiteatro Bento Prado Jr. - anexo",
+        descricao: "descricao"),
+    Atividade(
+        tipo: Tipo.Workshop,
+        titulo: "Workshop Roi Hero",
+        ministrante:
+            Ministrante("Paulo Waib Castello Branco", "Professor", "UFSCar"),
+        inicio: DateTime.parse("2019-09-12 08:00:00"),
+        fim: DateTime.parse("2019-09-12 09:00:00"),
+        local: "Anfiteatro Bento Prado Jr.",
+        descricao: "descricao"),
+  ];
+
+  List<Atividade> segunda = listaAtv.where((atv) => atv.inicio.day == 9).toList();
+  List<Atividade> terca = listaAtv.where((atv) => atv.inicio.day == 10).toList();
+  List<Atividade> quarta = listaAtv.where((atv) => atv.inicio.day == 11).toList();
+  List<Atividade> quinta = listaAtv.where((atv) => atv.inicio.day == 12).toList();
+  List<Atividade> sexta = listaAtv.where((atv) => atv.inicio.day == 13).toList();
 
   // Widget _buildListAtividades(int index) {
   //   return CronogramaCard(atv: listaAtv[index]);
   // }
 
-  final BlocCronograma bloc = BlocProvider.getBloc<BlocCronograma>();
-
-  Widget _buildListAtividades(int index, List<Atividade> list) {
-    return CronogramaCard(atv: list[index]);
-  }
+  // final BlocCronograma bloc = BlocProvider.getBloc<BlocCronograma>();
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAtividades();
+    // bloc.fetchAtividades();
 
-    return ListView(
-      physics: ClampingScrollPhysics(),
-      shrinkWrap: true,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-          child: Text(
-            "(navbar do cronograma)",
-            style: TextStyle(
-              fontSize: 24,
+    return DefaultTabController(
+      length: 5,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Scaffold(
+          appBar: TabBarNoRipple(
+            labelColor: Colors.white,
+            unselectedLabelColor: SecompColors.grey,
+            indicatorSize: TabBarIndicatorSize.label,
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: Colors.cyan,
+            ),
+            tabs: <Widget>[
+              Tab(
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Seg",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          "09/09",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Ter",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          "10/09",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Qua",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          "11/09",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Qui",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          "12/09",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Tab(
+                child: Container(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Sex",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          "13/09",
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: TabBarView(
+              children: <Widget>[
+                ListCronograma(list: segunda),
+                ListCronograma(list: terca),
+                ListCronograma(list: quarta),
+                ListCronograma(list: quinta),
+                ListCronograma(list: sexta),
+              ],
             ),
           ),
         ),
-        StreamBuilder(
-            stream: bloc.outAtividades,
-            builder: (context, snapshot) => snapshot.hasData
-                ? ListView.builder(
-                    physics: ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) =>
-                        _buildListAtividades(index, snapshot.data),
-                  )
-                : snapshot.hasError
-                    ? Center(
-                        child: Text("Ocorreu algum erro :( \n Tente Novamente"))
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      )),
-      ],
+      ),
     );
   }
 }

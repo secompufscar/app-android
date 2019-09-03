@@ -1,5 +1,4 @@
 import 'package:app_secomp/models/atividade.dart';
-import 'package:app_secomp/models/news.dart';
 import 'package:app_secomp/credentials.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';
@@ -9,25 +8,6 @@ class APIHelper {
   Dio dio = new Dio()
     ..interceptors.add(DioCacheManager(CacheConfig()).interceptor);
 
-  Future<List<News>> getNewsList() async {
-    String url =
-        "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + API_KEY;
-    final response = await dio.get(
-      url,
-      options: buildCacheOptions(
-        Duration(days: 7),
-      ),
-    );
-
-    if (response.statusCode == 200) {
-      return (response.data["articles"] as List)
-          .map<News>((json) => new News.fromJson(json))
-          .toList();
-    } else {
-      return Future.error('Failed to load');
-    }
-  }
-
   Future<List<Atividade>> getAtividades() async {
     String url = BASE_URL + "/api/atividades/10";
     try {
@@ -36,6 +16,7 @@ class APIHelper {
         options: buildCacheOptions(
           Duration(days: 7),
         ),
+        
       );
 
       if (response.statusCode == 200) {
@@ -48,7 +29,7 @@ class APIHelper {
       }
     } catch (e) {
       print("Error: $e");
-      return Future.error(e);
+      return [];
     }
   }
 }

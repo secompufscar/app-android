@@ -16,7 +16,16 @@ class BlocCronograma extends BlocBase {
     print("carregando atividades..");
     atividades = await api.getAtividades();
     print("carregou");
+    if(atividades.isEmpty || atividades == null) {
+      print("erroo");
+      _atividadesController.add(_atividadesController.value = []);
+    }
     inAtividades.add(_atividadesController.value = atividades);
+  }
+
+  void reload() async {
+    inAtividades.add(_atividadesController.value = null);
+    fetchAtividades();
   }
 
   @override

@@ -16,15 +16,16 @@ void main() => runApp(AppSecomp());
 class AppSecomp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
+    
+    final FirebaseMessaging _fcm = FirebaseMessaging();
+    _fcm.subscribeToTopic('noticias');
+
     Future<Widget> getHomeWidget() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       bool entered = prefs.getBool('entered');
       if (entered == null) {
         prefs.setBool('entered', true);
-
-        final FirebaseMessaging _fcm = FirebaseMessaging();
-        _fcm.subscribeToTopic('noticias');
-
         return Intro();
       } else
         return Base();

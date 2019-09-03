@@ -2,7 +2,6 @@ import 'package:app_secomp/pages/cronograma/cronograma.dart';
 import 'package:app_secomp/pages/home/bloc_home.dart';
 import 'package:app_secomp/pages/intro/intro.dart';
 import 'package:app_secomp/components/map_widget.dart';
-import 'package:app_secomp/util/message_handler.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -11,7 +10,6 @@ import 'package:app_secomp/colors.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'components/logo.dart';
 import 'package:app_secomp/pages/home/home.dart';
-import 'package:app_secomp/pages/home/home2.dart';
 import 'package:app_secomp/pages/blank.dart';
 import 'package:app_secomp/pages/sobre/sobre.dart';
 import 'package:app_secomp/pages/participante/participante.dart';
@@ -35,29 +33,7 @@ class _BaseState extends State<Base> {
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        showBottomSheet(
-          context: context,
-          builder: (context) => Container(
-            height: 80,
-            color: Colors.white,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(message['notification']['title']),
-                Text(message['notification']['body']),
-              ],
-            ),
-          ),
-        );
         _blocHome.loadNoticias();
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-        // TODO optional
-      },
-      onResume: (Map<String, dynamic> message) async {
-        print("onResume: $message");
-        // TODO optional
       },
     );
   }
@@ -93,11 +69,6 @@ class _BaseState extends State<Base> {
             title: Text("Home"),
             leading: Icon(Icons.home),
             onTap: () => _updatePage(HomePage()),
-          ),
-          ListTile(
-            title: Text("Exemplo teste"),
-            leading: Icon(Icons.home),
-            onTap: () => _updatePage(HomePage2()),
           ),
           ListTile(
             title: Text("Exemplo Mapa"),

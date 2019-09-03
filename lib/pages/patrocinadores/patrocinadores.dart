@@ -91,7 +91,7 @@ ListView imageList(List<String> listLinks){
                         child: Center(
                           child: CachedNetworkImage(
                             imageUrl: '${listLinks[index]}',
-                            placeholder: (context,url) => SpinKitHourGlass(color: Colors.greenAccent),
+                            placeholder: (context,url) => SpinKitChasingDots(color: Colors.cyan, size: 30,),
                           ),
                         ),  
                      ),
@@ -102,7 +102,7 @@ ListView imageList(List<String> listLinks){
                         child: Center(
                           child: CachedNetworkImage(
                          imageUrl: '${listLinks[index]}',
-                          placeholder: (context,url) => SpinKitHourGlass(color: Colors.greenAccent),
+                          placeholder: (context,url) => SpinKitChasingDots(color: Colors.cyan, size: 30,),
                           )
                         ),
                       ),

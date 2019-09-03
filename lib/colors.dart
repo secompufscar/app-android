@@ -8,5 +8,7 @@ class SecompColors {
   static const Color dicas2 = Color(0xFF00cfa1);
   static const Color dicas3 = Color(0x7770FF00);
   static const Color dicas4 = Color(0x77DBD227);
+
+  static const Color grey = Color(0xFF616161);
   
 }

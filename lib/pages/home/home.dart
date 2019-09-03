@@ -50,16 +50,33 @@ class HomePage extends StatelessWidget {
         ),
         StreamBuilder(
             stream: bloc.outNoticias,
-            builder: (context, snapshot) => snapshot.hasData
-                ? ListView.builder(
-                    reverse: true,
-                    physics: ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) =>
-                        _buildListNoticias(snapshot.data, index),
-                  )
-                : Center(child: CircularProgressIndicator())),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  physics: ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      _buildListNoticias(snapshot.data, index),
+                );
+              } else if (snapshot.hasError) {
+                return GestureDetector(
+                  onTap: () => bloc.loadNoticias(),
+                  child: Expanded(
+                    child: Container(
+                      child: Center(
+                        child: Text(
+                            "Ocorreu algum erro :(\nToque para recarregar"),
+                      ),
+                    ),
+                  ),
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
       ],
     );
   }

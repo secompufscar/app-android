@@ -9,29 +9,56 @@ class BlocHome extends BlocBase {
   Stream<List<Noticia>> get outNoticias => noticiasController.stream;
   Sink<List<Noticia>> get inNoticias => noticiasController.sink;
 
-  Future<bool> loadNoticias() {
+  // Future<bool> loadNoticias() async {
+  //   try {
+  //     final snapshot = Firestore.instance
+  //         .collection('noticias')
+  //         .orderBy("time", descending: true)
+  //         .snapshots();
+  //     print("passou aqui");
+  //     print(snapshot);
+  //     List<Noticia> temp = [];
+  //     snapshot.listen((data) {
+  //       data.documents.forEach(
+  //         (doc) => temp.add(
+  //           Noticia(
+  //             doc["text"].toString(),
+  //             doc["time"].toDate(),
+  //           ),
+  //         ),
+  //       );
+  //     });
+
+  //     inNoticias.add(noticiasController.value = temp);
+  //     print("acabou");
+  //     return Future.value(true);
+  //   } catch (e) {
+  //     return Future.value(false);
+  //   }
+  // }
+
+  Future<bool> loadNoticias() async {
     try {
-       final snapshot = Firestore.instance.collection('noticias').snapshots();
-    print("passou aqui");
-    print(snapshot);
-    List<Noticia> temp = [];
-    snapshot.listen((data) {
-      data.documents.forEach(
-        (doc) => temp.add(
-          Noticia(
-            doc["text"].toString(),
-            doc["time"].toDate(),
-          ),
-        ),
-      );
-    });
+      List<Noticia> temp = [];
+      await Firestore.instance
+          .collection('noticias')
+          .orderBy("time", descending: true)
+          .getDocuments()
+          .then(
+            (data) => data.documents.forEach(
+              (doc) => temp.add(
+                Noticia(
+                  doc["text"].toString(),
+                  doc["time"].toDate(),
+                ),
+              ),
+            )
+          );
 
-    temp.sort((a,b) => a.date.compareTo(b.date));
-
-    inNoticias.add(noticiasController.value = temp);
-    print("acabou");
-    return Future.value(true);
-    } catch(e) {
+      inNoticias.add(noticiasController.value = temp);
+      print("acabou");
+      return Future.value(true);
+    } catch (e) {
       return Future.value(false);
     }
   }
