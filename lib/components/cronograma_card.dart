@@ -65,12 +65,12 @@ class CronogramaCard extends StatelessWidget {
                   new Icon(Icons.star_border),
                 ]),
             new Text(
-              atv.ministrante.nome,
+              atv.ministrantes[0].nome,
               style: new TextStyle(color: Colors.grey),
             ),
             new Row(children: <Widget>[
               Text(
-                "${atv.inicio.hour}h${atv.inicio.minute}",
+                atv.inicio !=null ? "${atv.inicio.hour}h${atv.inicio.minute}" :  " ",
                 style: new TextStyle(color: Colors.grey),
               ),
               Padding(

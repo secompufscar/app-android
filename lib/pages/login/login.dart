@@ -4,14 +4,13 @@ import 'package:app_secomp/base.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/components/logo.dart';
 import 'package:app_secomp/pages/login/cadastro_webview.dart';
+import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 
 class CamposLogin extends StatelessWidget {
-
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
-
       gradient: LinearGradient(
         colors: <Color>[
           Color(0xFF33A4A0),
@@ -49,6 +48,31 @@ class CamposLogin extends StatelessWidget {
         ),
       ),
     );
+
+    void _launchURL(BuildContext context) async {
+      try {
+        await launch(
+          'https://secompufscar.com.br/participante/cadastro',
+          option: new CustomTabsOption(
+            toolbarColor: Theme.of(context).primaryColor,
+            enableDefaultShare: true,
+            enableUrlBarHiding: true,
+            showPageTitle: true,
+            animation: new CustomTabsAnimation.slideIn(),
+            // or user defined animation.
+            extraCustomTabs: <String>[
+              // ref. https://play.google.com/store/apps/details?id=org.mozilla.firefox
+              'org.mozilla.firefox',
+              // ref. https://play.google.com/store/apps/details?id=com.microsoft.emmx
+              'com.microsoft.emmx',
+            ],
+          ),
+        );
+      } catch (e) {
+        // An exception is thrown if browser app is not installed on Android device.
+        debugPrint(e.toString());
+      }
+    }
 
     return new Scaffold(
       body: new SafeArea(
@@ -112,12 +136,7 @@ class CamposLogin extends StatelessWidget {
                 children: <Widget>[
                   Text('Não tem conta ?'),
                   new InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CadastroWebView()),
-                      );
-                    },
+                    onTap: () => _launchURL(context),
                     borderRadius: BorderRadius.circular(8),
                     child: new Text(
                       ' Crie uma conta',

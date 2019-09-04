@@ -75,7 +75,7 @@ class Sobre extends StatelessWidget {
 
   void _sendEmail() async {
     const url =
-        'mailto:organizacaosecompufscar@gmail.com?subject=Contato SECOMP';
+        'mailto:marketing@secompufscar.com.br?subject=Contato SECOMP';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -157,7 +157,7 @@ class Sobre extends StatelessWidget {
           ),
         ),
         TextButton(
-          "organizacaosecompufscar@gmail.com",
+          "marketing@secompufscar.com.br",
           style: TextStyle(fontSize: 16),
           icon: Icon(Icons.email),
           center: true,

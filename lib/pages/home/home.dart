@@ -52,6 +52,12 @@ class HomePage extends StatelessWidget {
             stream: bloc.outNoticias,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                
+                if (snapshot.data.isEmpty)
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+
                 return ListView.builder(
                   physics: ClampingScrollPhysics(),
                   shrinkWrap: true,
@@ -65,9 +71,8 @@ class HomePage extends StatelessWidget {
                   child: Expanded(
                     child: Container(
                       child: Center(
-                        child: Text(
-                            "Ocorreu algum erro :(\nToque para recarregar"),
-                      ),
+                          child: Text(
+                              "Ocorreu algum erro :(\nToque para recarregar")),
                     ),
                   ),
                 );

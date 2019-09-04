@@ -9,7 +9,7 @@ class APIHelper {
     ..interceptors.add(DioCacheManager(CacheConfig()).interceptor);
 
   Future<List<Atividade>> getAtividades() async {
-    String url = BASE_URL + "/api/atividades/10";
+    String url = BASE_URL + "/api/atividades";
     try {
       final response = await dio.get(
         url,
@@ -20,8 +20,8 @@ class APIHelper {
       );
 
       if (response.statusCode == 200) {
-        print(response.data.toString());
-        return (response.data["results"] as List)
+        print("data: " + response.data.toString());
+        return (response.data as List)
             .map<Atividade>((json) => Atividade.fromJson(json))
             .toList();
       } else {

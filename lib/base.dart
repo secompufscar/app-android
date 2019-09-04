@@ -2,6 +2,7 @@ import 'package:app_secomp/pages/cronograma/cronograma.dart';
 import 'package:app_secomp/pages/home/bloc_home.dart';
 import 'package:app_secomp/pages/intro/intro.dart';
 import 'package:app_secomp/components/map_widget.dart';
+import 'package:app_secomp/pages/login/login.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -49,8 +50,6 @@ class _BaseState extends State<Base> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     void _updatePage(Widget body, {String title: "X SECOMP"}) {
       setState(() {
         _body = body;
@@ -95,6 +94,11 @@ class _BaseState extends State<Base> {
             title: Text("Patrocinadores"),
             leading: Icon(Icons.star),
             onTap: () => _updatePage(Patrocinadores(), title: "Patrocinadores"),
+          ),
+          ListTile(
+            title: Text("Login"),
+            leading: Icon(Icons.star),
+            onTap: () => _pushTo(CamposLogin()),
           ),
           ListTile(
             title: Text("Dicas"),

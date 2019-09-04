@@ -42,6 +42,7 @@ dependencies:
   pull_to_refresh: ^1.5.4
   firebase_messaging: ^5.0.2
   flutter_tab_bar_no_ripple: ^0.1.1
+  flutter_custom_tabs: ^0.6.0
 
 
 dev_dependencies:
