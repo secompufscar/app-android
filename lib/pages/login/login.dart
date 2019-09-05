@@ -3,7 +3,6 @@ import 'package:app_secomp/components/gradient_button.dart';
 import 'package:app_secomp/base.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/components/logo.dart';
-import 'package:app_secomp/pages/login/cadastro_webview.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
 
 class CamposLogin extends StatelessWidget {

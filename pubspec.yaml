@@ -44,7 +44,6 @@ dependencies:
   flutter_tab_bar_no_ripple: ^0.1.1
   flutter_custom_tabs: ^0.6.0
 
-
 dev_dependencies:
 
   flutter_test:
@@ -65,6 +64,7 @@ flutter:
   assets:
     - assets/logos/
     - assets/images/
+    - assets/equipe/
 
   fonts:
     - family: Lato

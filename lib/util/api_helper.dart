@@ -32,4 +32,21 @@ class APIHelper {
       return [];
     }
   }
+
+  Future<String> getHash(String password) async {
+    String url = BASE_URL + "/api/hash-func";
+    try {
+      final response = await dio.get(url);
+
+      if(response.statusCode == 200) {
+        return response.data.toString();
+      } else {
+        return Future.error('Fail');
+      }
+    } catch (e) {
+      return Future.error('Fail');
+    }
+  }
+
+ 
 }

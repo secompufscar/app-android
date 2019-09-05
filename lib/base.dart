@@ -1,4 +1,5 @@
 import 'package:app_secomp/pages/cronograma/cronograma.dart';
+import 'package:app_secomp/pages/equipe/equipe.dart';
 import 'package:app_secomp/pages/home/bloc_home.dart';
 import 'package:app_secomp/pages/intro/intro.dart';
 import 'package:app_secomp/components/map_widget.dart';
@@ -88,7 +89,7 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Equipe"),
             leading: Icon(Icons.people),
-            onTap: () => _updatePage(BlankPage(), title: "Equipe"),
+            onTap: () => _updatePage(Equipe(), title: "Equipe"),
           ),
           ListTile(
             title: Text("Patrocinadores"),
