@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 
 class Cronograma extends StatelessWidget {
-
   final BlocCronograma bloc = BlocProvider.getBloc<BlocCronograma>();
 
   @override
@@ -135,48 +134,67 @@ class Cronograma extends StatelessWidget {
                 ),
               ],
             ),
-            body: StreamBuilder(
-              stream: bloc.outAtividades,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError || snapshot.data.isEmpty) {
-                  return Center(
-                    child: GestureDetector(
-                      onTap: bloc.reload,
-                      child: Container(
-                        child: Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          child: Text(
-                              "Ocorreu algum erro :( \nToque aqui para recarregar"),
+            body: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: StreamBuilder(
+                stream: bloc.outAtividades,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData || snapshot.data.isEmpty) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: GestureDetector(
+                        onTap: bloc.reload,
+                        child: Container(
+                          child: Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Text(
+                                "Ocorreu algum erro :( \nToque aqui para recarregar"),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                } else {
-                  List<Atividade> lista = snapshot.data;
-                  List<Atividade> segunda =
-                      lista.where((atv) => atv.inicio != null && atv.inicio.day == 9).toList();
-                  List<Atividade> terca =
-                      lista.where((atv) => atv.inicio != null && atv.inicio.day == 10).toList();
-                  List<Atividade> quarta =
-                      lista.where((atv) => atv.inicio != null && atv.inicio.day == 11).toList();
-                  List<Atividade> quinta =
-                      lista.where((atv) => atv.inicio != null && atv.inicio.day == 12).toList();
-                  List<Atividade> sexta =
-                      lista.where((atv) => atv.inicio != null && atv.inicio.day == 13).toList();
+                    );
+                  } else {
+                    List<Atividade> lista = snapshot.data;
+                    List<Atividade> segunda = lista
+                        .where(
+                            (atv) => atv.inicio != null && atv.inicio.day == 9)
+                        .toList();
+                    List<Atividade> terca = lista
+                        .where(
+                            (atv) => atv.inicio != null && atv.inicio.day == 10)
+                        .toList();
+                    List<Atividade> quarta = lista
+                        .where(
+                            (atv) => atv.inicio != null && atv.inicio.day == 11)
+                        .toList();
+                    List<Atividade> quinta = lista
+                        .where(
+                            (atv) => atv.inicio != null && atv.inicio.day == 12)
+                        .toList();
+                    List<Atividade> sexta = lista
+                        .where(
+                            (atv) => atv.inicio != null && atv.inicio.day == 13)
+                        .toList();
 
-                  return TabBarView(
-                    children: <Widget>[
-                      ListCronograma(list: segunda),
-                      ListCronograma(list: terca),
-                      ListCronograma(list: quarta),
-                      ListCronograma(list: quinta),
-                      ListCronograma(list: sexta),
-                    ],
-                  );
-                }
-              },
+                    segunda.sort((a, b) => a.inicio.compareTo(b.inicio));
+                    terca.sort((a, b) => a.inicio.compareTo(b.inicio));
+                    quarta.sort((a, b) => a.inicio.compareTo(b.inicio));
+                    quinta.sort((a, b) => a.inicio.compareTo(b.inicio));
+                    sexta.sort((a, b) => a.inicio.compareTo(b.inicio));
+
+                    return TabBarView(
+                      children: <Widget>[
+                        ListCronograma(list: segunda),
+                        ListCronograma(list: terca),
+                        ListCronograma(list: quarta),
+                        ListCronograma(list: quinta),
+                        ListCronograma(list: sexta),
+                      ],
+                    );
+                  }
+                },
+              ),
             )),
       ),
     );

@@ -24,65 +24,6 @@ class BlocCronograma extends BlocBase {
     inAtividades.add(_atividadesController.value = atividades);
   }
 
-  // void teste() {
-  //   final List<Atividade> listaAtv = [
-  //     Atividade(
-  //         tipo: Tipo.Institucional,
-  //         titulo: "Credenciamento",
-  //         ministrantes: [Ministrante("Secomp UFSCar", "Secomp", "UFSCar")],
-  //         inicio: DateTime.parse("2019-09-09 08:00:00"),
-  //         fim: DateTime.parse("2019-09-09 09:00:00"),
-  //         local: "Anfiteatro Bento Prado Jr.",
-  //         descricao: "descricao"),
-  //     Atividade(
-  //         tipo: Tipo.Institucional,
-  //         titulo: "Abertura",
-  //         ministrante: [Ministrante("Secomp UFSCar", "Secomp", "UFSCar")],
-  //         inicio: DateTime.parse("2019-09-09 09:00:00"),
-  //         fim: DateTime.parse("2019-09-09 10:00:00"),
-  //         local: "Anfiteatro Bento Prado Jr.",
-  //         descricao: "descricao"),
-  //     Atividade(
-  //         tipo: Tipo.Palestra,
-  //         titulo: "Crimes Digitais e Computação Forense",
-  //         ministrante:
-  //             Ministrante("Vaine Luiz Barreira", "Professor", "UFSCar"),
-  //         inicio: DateTime.parse("2019-09-10 08:00:00"),
-  //         fim: DateTime.parse("2019-09-10 09:00:00"),
-  //         local: "Anfiteatro Bento Prado Jr.",
-  //         descricao: "descricao"),
-  //     Atividade(
-  //         tipo: Tipo.Palestra,
-  //         titulo:
-  //             "Homem x Máquina: o impacto da Inteligência Artificial na saúde",
-  //         ministrante:
-  //             Ministrante("Michel Silva Fornaciali", "Professor", "UFSCar"),
-  //         inicio: DateTime.parse("2019-09-11 08:00:00"),
-  //         fim: DateTime.parse("2019-09-11 09:00:00"),
-  //         local: "Anfiteatro Bento Prado Jr.",
-  //         descricao: "descricao"),
-  //     Atividade(
-  //         tipo: Tipo.Coffee,
-  //         titulo: "Coffee-break",
-  //         ministrante: Ministrante("", "", ""),
-  //         inicio: DateTime.parse("2019-09-11 12:00:00"),
-  //         fim: DateTime.parse("2019-09-11 13:00:00"),
-  //         local: "Anfiteatro Bento Prado Jr. - anexo",
-  //         descricao: "descricao"),
-  //     Atividade(
-  //         tipo: Tipo.Workshop,
-  //         titulo: "Workshop Roi Hero",
-  //         ministrante:
-  //             Ministrante("Paulo Waib Castello Branco", "Professor", "UFSCar"),
-  //         inicio: DateTime.parse("2019-09-12 08:00:00"),
-  //         fim: DateTime.parse("2019-09-12 09:00:00"),
-  //         local: "Anfiteatro Bento Prado Jr.",
-  //         descricao: "descricao"),
-  //   ];
-
-  //   inAtividades.add(_atividadesController.value = listaAtv);
-  // }
-
   void reload() async {
     inAtividades.add(_atividadesController.value = null);
     fetchAtividades();

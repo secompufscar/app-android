@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'ministrante.dart';
 
-enum Tipo { Palestra, Minicurso, Workshop, MesaRedonda, Coffee, Institucional }
+enum Tipo { Palestra, Minicurso, Workshop, MesaRedonda, Coffee, Institucional, Outro }
 
-class Atividade {
+class Atividade{
   final Tipo tipo;
   final String titulo;
   List<Ministrante> ministrantes;
@@ -15,7 +15,7 @@ class Atividade {
 
   static DateTime getDate(String date) {
     print(date);
-    return DateTime.tryParse(
+    return DateTime.parse(
           "2019-09-${date.substring(5, 7)} ${date.substring(17, 19)}:${date.substring(20, 22)}:00");
   }
 
@@ -29,8 +29,26 @@ class Atividade {
       this.descricao});
 
   factory Atividade.fromJson(Map<String, dynamic> json) {
-    // Mudar quando os nomes dos tipos estiverem certos no BD
-    Tipo tipo = Tipo.Palestra;
+    
+    Tipo tipo;
+    switch (json['tipo']) {
+      case "Minicurso":
+        tipo = Tipo.Minicurso;
+        break;
+      case "Palestra":
+        tipo = Tipo.Palestra;
+        break;
+      case "Mesa Redonda":
+        tipo = Tipo.MesaRedonda;
+        break;
+      default:
+        tipo = Tipo.Outro;
+    }
+
+    if(json['titulo'] != null)
+      if(json['titulo'].contains("Coffe")) 
+        tipo = Tipo.Coffee;
+    
     List<Ministrante> listMinistrantes = [];
     if (json['ministrantes'].length > 0) {
       for (var m in json['ministrantes']) {
@@ -43,6 +61,8 @@ class Atividade {
       listMinistrantes.add(Ministrante("SECOMP", "-", "-"));
     }
 
+   
+
     return Atividade(
       tipo: tipo,
       titulo: json['titulo'] ?? json['tipo'] ?? "Atividade",
@@ -53,6 +73,7 @@ class Atividade {
       fim: json['fim'] != null ? getDate(json['fim']) : null,
     );
   }
+
 }
 
 

@@ -70,7 +70,7 @@ class CronogramaCard extends StatelessWidget {
             ),
             new Row(children: <Widget>[
               Text(
-                atv.inicio !=null ? "${atv.inicio.hour}h${atv.inicio.minute}" :  " ",
+                atv.inicio !=null ? TimeOfDay.fromDateTime(atv.inicio).format(context) : " ",
                 style: new TextStyle(color: Colors.grey),
               ),
               Padding(
