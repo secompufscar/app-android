@@ -55,10 +55,12 @@ class Atividade{
         listMinistrantes.add(Ministrante(
             "${m['primeiro_nome']} ${m['sobrenome']}",
             m['cargo'] ?? "-",
-            m['instituicao'] ?? "-"));
+            m['instituicao'] ?? "-",
+            m['biografia'] ?? "-",
+            m['img'] ?? "secomp.png"));
       }
     } else {
-      listMinistrantes.add(Ministrante("SECOMP", "-", "-"));
+      listMinistrantes.add(Ministrante("SECOMP", "-", "-", "secomp.png", "Semana Acadêmica da Computação"));
     }
 
    

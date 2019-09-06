@@ -91,7 +91,7 @@ class _IntroState extends State<Intro> {
                     fontWeight: FontWeight.w900),
               ),
               Text(
-                "De 4 a 6 horas",
+                "De 4 a 8 horas",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
