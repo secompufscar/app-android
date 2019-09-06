@@ -1,4 +1,5 @@
 import 'package:app_secomp/models/atividade.dart';
+import 'package:app_secomp/pages/cronograma/desc_atividade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -62,7 +63,6 @@ class CronogramaCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  new Icon(Icons.star_border),
                 ]),
             new Text(
               atv.ministrantes[0].nome,
@@ -70,7 +70,9 @@ class CronogramaCard extends StatelessWidget {
             ),
             new Row(children: <Widget>[
               Text(
-                atv.inicio !=null ? TimeOfDay.fromDateTime(atv.inicio).format(context) : " ",
+                atv.inicio != null
+                    ? TimeOfDay.fromDateTime(atv.inicio).format(context)
+                    : " ",
                 style: new TextStyle(color: Colors.grey),
               ),
               Padding(
@@ -81,7 +83,18 @@ class CronogramaCard extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              new Icon(Icons.arrow_forward_ios, size: 16),
+              new IconButton(
+                icon: Icon(Icons.arrow_forward_ios, size: 16),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          AtividadePage(atv: atv),
+                    ),
+                  );
+                },
+              ),
             ]),
           ],
         ),
