@@ -4,7 +4,9 @@ import 'dart:math';
 import 'package:app_secomp/base.dart';
 import 'package:app_secomp/pages/cronograma/bloc_cronograma.dart';
 import 'package:app_secomp/pages/home/bloc_home.dart';
+import 'package:app_secomp/pages/home/home.dart';
 import 'package:app_secomp/pages/intro/intro.dart';
+import 'package:app_secomp/pages/participante/bloc_participante.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -28,7 +30,7 @@ class AppSecomp extends StatelessWidget {
         prefs.setBool('entered', true);
         return Intro();
       } else
-        return Base();
+        return Base(first: HomePage(), title: "X SECOMP",);
     }
 
     return BlocProvider(
@@ -44,6 +46,7 @@ class AppSecomp extends StatelessWidget {
       blocs: [
         Bloc((i) => BlocHome()),
         Bloc((i) => BlocCronograma()),
+        Bloc((i) => BlocParticipante())
       ],
     );
   }

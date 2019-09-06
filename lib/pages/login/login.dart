@@ -1,12 +1,35 @@
+import 'package:app_secomp/models/participante.dart';
+import 'package:app_secomp/pages/participante/bloc_participante.dart';
+import 'package:app_secomp/pages/participante/participante.dart';
+import 'package:app_secomp/util/api_helper.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:app_secomp/components/gradient_button.dart';
 import 'package:app_secomp/base.dart';
 import 'package:app_secomp/colors.dart';
 import 'package:app_secomp/components/logo.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class CamposLogin extends StatelessWidget {
+class CamposLogin extends StatefulWidget {
+  @override
+  _CamposLoginState createState() => _CamposLoginState();
+}
+
+class _CamposLoginState extends State<CamposLogin> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+
+  final BlocParticipante blocParticipante =
+      BlocProvider.getBloc<BlocParticipante>();
+
+  final GlobalKey<OverlayState> _dialogKey = GlobalKey<OverlayState>();
+
+  final APIHelper api = APIHelper();
+
+  String email = '';
+  String senha = '';
+
+  Widget display = Container();
 
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
@@ -23,15 +46,53 @@ class CamposLogin extends StatelessWidget {
     );
   }
 
+  void _handleError() {
+    setState(() {
+      display = Text("Email não existente ou senha inválida");
+    });
+    Future.delayed((Duration(seconds: 2)), () {});
+    _formKey.currentState.reset();
+    Navigator.of(_formKey.currentContext).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
+    void _saveAndLogin() async {
+      _formKey.currentState.save();
+      setState(() {
+        display = Container();
+      });
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          key: _dialogKey,
+          content: Row(
+            children: <Widget>[
+              CircularProgressIndicator(),
+              Text("Fazendo login..."),
+            ],
+          ),
+        ),
+      );
+
+      try {
+        await api.fetchParticipante(senha, email).then((p) async {
+          blocParticipante.setParticipante(p);
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Base(
+                        first: ParticipanteScreen(),title: "Área do Participante",
+                      )));
+        }, onError: (_) => _handleError());
+      } catch (_) {
+        _handleError();
+        return;
+      }
+    }
+
     Widget loginButton = GradientButton(
-      onPressed: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => Base()),
-        );
-      },
+      onPressed: () => _saveAndLogin(),
       gradient: LinearGradient(
         colors: <Color>[
           SecompColors.gradientStart,
@@ -48,10 +109,10 @@ class CamposLogin extends StatelessWidget {
       ),
     );
 
-    void _launchURL(BuildContext context) async {
+    void _launchURL(BuildContext context, String url) async {
       try {
         await launch(
-          'https://secompufscar.com.br/participante/cadastro',
+          url,
           option: new CustomTabsOption(
             toolbarColor: Theme.of(context).primaryColor,
             enableDefaultShare: true,
@@ -85,8 +146,15 @@ class CamposLogin extends StatelessWidget {
             children: <Widget>[
               LogoSeKombi(w: 300, h: 300),
               new TextFormField(
+                  onSaved: (e) {
+                    setState(() {
+                      email = e;
+                    });
+                  },
                   cursorColor: Colors.teal,
                   obscureText: false,
+                  textCapitalization: TextCapitalization.none,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal[300])),
@@ -100,6 +168,11 @@ class CamposLogin extends StatelessWidget {
                 padding: EdgeInsets.all(8),
               ),
               new TextFormField(
+                  onSaved: (p) {
+                    setState(() {
+                      senha = p;
+                    });
+                  },
                   cursorColor: Colors.teal,
                   obscureText: true,
                   decoration: InputDecoration(
@@ -111,9 +184,8 @@ class CamposLogin extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: InkWell(
                   borderRadius: BorderRadius.circular(8),
-                  onTap: () {
-                    //TODO: colocar webview
-                  },
+                  onTap: () => _launchURL(context,
+                      'https://secompufscar.com.br/participante/esqueci-senha'),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: new Text(
@@ -126,6 +198,9 @@ class CamposLogin extends StatelessWidget {
                   ),
                 ),
               ),
+              Center(
+                child: display,
+              ),
               new Padding(
                 padding: new EdgeInsets.only(top: 80, bottom: 80),
                 child: loginButton,
@@ -135,7 +210,8 @@ class CamposLogin extends StatelessWidget {
                 children: <Widget>[
                   Text('Não tem conta ?'),
                   new InkWell(
-                    onTap: () => _launchURL(context),
+                    onTap: () => _launchURL(context,
+                        'https://secompufscar.com.br/participante/cadastro'),
                     borderRadius: BorderRadius.circular(8),
                     child: new Text(
                       ' Crie uma conta',

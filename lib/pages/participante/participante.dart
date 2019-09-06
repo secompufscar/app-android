@@ -1,5 +1,7 @@
+import 'package:app_secomp/pages/participante/bloc_participante.dart';
 import 'package:app_secomp/pages/participante/dados_participante.dart';
 import 'package:app_secomp/pages/participante/presencas.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 
 class ParticipanteScreen extends StatefulWidget {
@@ -16,6 +18,9 @@ class _ParticipanteScreenState extends State<ParticipanteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final BlocParticipante bloc = BlocProvider.getBloc<BlocParticipante>();
+    
+
     return Scaffold(
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 250),

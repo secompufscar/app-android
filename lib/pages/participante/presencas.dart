@@ -1,8 +1,15 @@
 import 'package:app_secomp/models/atividade.dart';
+import 'package:app_secomp/models/participante.dart';
 import 'package:app_secomp/models/presenca.dart';
+import 'package:app_secomp/pages/cronograma/bloc_cronograma.dart';
+import 'package:app_secomp/pages/participante/bloc_participante.dart';
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 
 class PresencasScreen extends StatelessWidget {
+  final BlocParticipante bloc = BlocProvider.getBloc<BlocParticipante>();
+  final BlocCronograma blocCronograma = BlocProvider.getBloc<BlocCronograma>();
+
   List<Presenca> presencas = <Presenca>[
     Presenca(
         atividade: Atividade(tipo: Tipo.Palestra, titulo: "Palestra legal"),
@@ -48,25 +55,40 @@ class PresencasScreen extends StatelessWidget {
         return "Institucional";
         break;
       default:
-        return "Atividade";
+        return "Outro";
     }
   }
 
-  Widget _buildItem(int index) {
-    Presenca presenca = presencas[index];
-    String tipo = getTipo(presenca.atividade.tipo);
-    String titulo = presenca.atividade.titulo;
+  Widget _buildItem(String presenca) {
     return ListTile(
-      title: Text("$tipo: $titulo"),
-      subtitle: Text("${presenca.horario}"),
+      title: Text(presenca),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: presencas.length,
-      itemBuilder: (context, index) => _buildItem(index),
+    blocCronograma.fetchAtividades();
+    return StreamBuilder(
+      stream: bloc.outParticipante,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final Participante participante = snapshot.data;
+          return ListView.builder(
+            itemCount: participante.presencas.length,
+            itemBuilder: (context, index) =>
+                _buildItem(participante.presencas[index]),
+          );
+        } else {
+          Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }
+
+// return ListView.builder(
+//       itemCount: presencas.length,
+//       itemBuilder: (context, index) => _buildItem(index),
+//     );

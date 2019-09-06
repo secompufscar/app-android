@@ -1,8 +1,9 @@
-import 'package:app_secomp/models/presenca.dart';
-
 class Participante {
   String nome;
-  List<String> camisetas;
+  List camisetas;
   int pontos;
-  List<Presenca> presencas;
+  List presencas;
+  String uuid;
+
+  Participante({this.nome, this.camisetas, this.pontos, this.presencas, this.uuid});
 }

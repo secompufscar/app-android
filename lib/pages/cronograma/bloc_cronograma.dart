@@ -9,9 +9,9 @@ class BlocCronograma extends BlocBase {
   APIHelper api = APIHelper();
 
   List<Atividade> atividades;
-  var _atividadesController = BehaviorSubject<List<Atividade>>.seeded([]);
-  Stream<List<Atividade>> get outAtividades => _atividadesController.stream;
-  Sink<List<Atividade>> get inAtividades => _atividadesController.sink;
+  var atividadesController = BehaviorSubject<List<Atividade>>.seeded([]);
+  Stream<List<Atividade>> get outAtividades => atividadesController.stream;
+  Sink<List<Atividade>> get inAtividades => atividadesController.sink;
 
   void fetchAtividades() async {
     print("carregando atividades..");
@@ -19,19 +19,19 @@ class BlocCronograma extends BlocBase {
     print("carregou");
     if (atividades.isEmpty || atividades == null) {
       print("erroo");
-      _atividadesController.add(_atividadesController.value = []);
+      atividadesController.add(atividadesController.value = []);
     }
-    inAtividades.add(_atividadesController.value = atividades);
+    inAtividades.add(atividadesController.value = atividades);
   }
 
   void reload() async {
-    inAtividades.add(_atividadesController.value = null);
+    inAtividades.add(atividadesController.value = null);
     fetchAtividades();
   }
 
   @override
   void dispose() {
-    _atividadesController.close();
+    atividadesController.close();
     super.dispose();
   }
 }
