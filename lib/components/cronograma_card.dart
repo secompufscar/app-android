@@ -75,14 +75,20 @@ class CronogramaCard extends StatelessWidget {
                     : " ",
                 style: new TextStyle(color: Colors.grey),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: Text(
-                  atv.local,
-                  style: new TextStyle(color: Colors.grey),
+              Flexible(
+                fit: FlexFit.tight,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Text(
+                    atv.local,
+                    overflow: TextOverflow.fade,
+                    maxLines: 1,
+                    softWrap: false,
+                    style: new TextStyle(color: Colors.grey),
+                  ),
                 ),
               ),
-              Spacer(),
+        
               new IconButton(
                 icon: Icon(Icons.arrow_forward_ios, size: 16),
                 onPressed: () {
@@ -103,7 +109,13 @@ class CronogramaCard extends StatelessWidget {
 
     return SecompCard(
       child: Row(
-        children: <Widget>[icone, texto],
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: icone,
+          ),
+          texto
+        ],
       ),
     );
   }

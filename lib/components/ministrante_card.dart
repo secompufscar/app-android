@@ -12,7 +12,7 @@ class MinistranteCard extends Container {
       child: Row(
         children: <Widget>[
           ClipOval(
-            child: Image.asset(
+            child: Image.network(
               'https://secompufscar.com.br/uploads/fotos_ministrantes/${min.img}',
               fit: BoxFit.cover,
               width: 80,

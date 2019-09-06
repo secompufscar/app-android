@@ -78,7 +78,7 @@ class _CamposLoginState extends State<CamposLogin> {
       try {
         await api.fetchParticipante(senha, email).then((p) async {
           blocParticipante.setParticipante(p);
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => Base(

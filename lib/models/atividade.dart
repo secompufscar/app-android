@@ -54,9 +54,9 @@ class Atividade{
       for (var m in json['ministrantes']) {
         listMinistrantes.add(Ministrante(
             "${m['primeiro_nome']} ${m['sobrenome']}",
-            m['cargo'] ?? "-",
-            m['instituicao'] ?? "-",
-            m['biografia'] ?? "-",
+            m['cargo'] ?? " ",
+            m['instituicao'] ?? " ",
+            m['biografia'] ?? " ",
             m['img'] ?? "secomp.png"));
       }
     } else {

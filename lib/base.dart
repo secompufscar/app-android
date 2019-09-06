@@ -99,7 +99,7 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Patrocinadores"),
             leading: Icon(Icons.star),
-            onTap: () => _updatePage(Patrocinadores(), title: "Patrocinadores"),
+            onTap: () => _updatePage(PatrocinadoresScreen(), title: "Patrocinadores"),
           ),
           ListTile(
             title: Text("Sobre"),
