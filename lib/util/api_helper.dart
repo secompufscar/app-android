@@ -1,4 +1,3 @@
-
 import 'package:app_secomp/models/atividade.dart';
 import 'package:app_secomp/credentials.dart';
 import 'package:app_secomp/models/participante.dart';
@@ -17,6 +16,7 @@ class APIHelper {
         url,
         options: buildCacheOptions(
           Duration(days: 7),
+          forceRefresh: true
         ),
       );
 
@@ -45,16 +45,17 @@ class APIHelper {
         },
         options: buildCacheOptions(
           Duration(days: 7),
+          forceRefresh: true
         ),
       );
 
       print("passou aqui");
 
       if (response.statusCode == 200) {
-        if(response.data.toString() == "ERRO: senha inválida") {
+        if (response.data.toString() == "ERRO: senha inválida") {
           print("senha inválida");
           return Future.error("senha");
-        } else if(response.data.toString() == "Usuário inexistente") {
+        } else if (response.data.toString() == "Usuário inexistente") {
           print("usuário inexistente");
           return Future.error("inexistente");
         }
@@ -64,8 +65,8 @@ class APIHelper {
         print("chegou aqui tbm");
         return Participante(
           nome: dados['primeiro_nome'] + ' ' + dados['sobrenome'],
-          camisetas: dados['camiseta'] ,
-          presencas: dados['presencas'] ,
+          camisetas: dados['camiseta'],
+          presencas: dados['presencas'],
           pontos: dados['pontuacao'],
           uuid: dados['uuid'],
         );
