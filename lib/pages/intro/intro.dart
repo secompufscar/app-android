@@ -1,4 +1,5 @@
 import 'package:app_secomp/components/text_button.dart';
+import 'package:app_secomp/pages/home/home.dart';
 import 'package:app_secomp/pages/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -158,7 +159,7 @@ class _IntroState extends State<Intro> {
             TextButton(
               "Não quero entrar agora",
               style: TextStyle(fontSize: 14),
-              action: () => _pushTo(Base()),
+              action: () => _pushTo(Base(first: HomePage(), title: "Área do Participante",)),
             ),
             FloatingActionButton.extended(
               label: Text("Entre com sua conta!"),
