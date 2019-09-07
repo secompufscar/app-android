@@ -54,13 +54,13 @@ class Atividade{
       for (var m in json['ministrantes']) {
         listMinistrantes.add(Ministrante(
             "${m['primeiro_nome']} ${m['sobrenome']}",
-            m['cargo'] ?? " ",
-            m['instituicao'] ?? " ",
-            m['biografia'] ?? " ",
-            m['img'] ?? "secomp.png"));
+            m['cargo'] ?? "-",
+            m['instituicao'] ?? "-",
+            m['img'] ?? "secomp.png",
+            m['biografia'] ?? "Sem informações"));
       }
     } else {
-      listMinistrantes.add(Ministrante("SECOMP", "-", "-", "secomp.png", "Semana Acadêmica da Computação"));
+      listMinistrantes.add(Ministrante("SECOMP", " ", " ", "secomp.png", " "));
     }
 
    
