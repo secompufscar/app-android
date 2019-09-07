@@ -1,4 +1,3 @@
-import 'package:app_secomp/components/ministrante_card.dart';
 import 'package:app_secomp/models/ministrante.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:app_secomp/base.dart';
 import 'package:app_secomp/pages/cronograma/bloc_cronograma.dart';
 import 'package:app_secomp/pages/home/bloc_home.dart';

@@ -1,4 +1,3 @@
-import 'package:app_secomp/components/text_button.dart';
 import 'package:app_secomp/models/participante.dart';
 import 'package:app_secomp/pages/login/login.dart';
 import 'package:app_secomp/pages/participante/bloc_participante.dart';

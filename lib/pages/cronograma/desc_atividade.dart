@@ -32,8 +32,14 @@ class AtividadePage extends StatelessWidget {
         case Tipo.Coffee:
           return "Coffee-break";
           break;
-        case Tipo.Institucional:
-          return "Instituicional";
+        case Tipo.PS:
+          return "Processo Seletivo";
+          break;
+        case Tipo.FeiraProjeto:
+          return "Feira de Projetos";
+          break;
+        case Tipo.PalestraEmpresarial:
+          return "Palestra Empresarial";
           break;
         default:
           return "Atividade";

@@ -1,5 +1,4 @@
 import 'package:app_secomp/models/atividade.dart';
-import 'package:app_secomp/models/ministrante.dart';
 import 'package:app_secomp/util/api_helper.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:rxdart/rxdart.dart';
