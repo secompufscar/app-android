@@ -1,4 +1,3 @@
-import 'package:app_secomp/components/ministrante_card.dart';
 import 'package:app_secomp/models/ministrante.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
