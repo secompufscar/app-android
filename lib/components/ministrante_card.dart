@@ -35,43 +35,45 @@ class MinistranteCard extends Container {
               child: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Text(
-                          min.nome,
-                          style: TextStyle(fontSize: 18),
-                          overflow: TextOverflow.clip,
-                          maxLines: 2,
-                          softWrap: true,
+                  Flexible(fit: FlexFit.tight,
+                                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Text(
+                            min.nome,
+                            style: TextStyle(fontSize: 18),
+                            overflow: TextOverflow.clip,
+                            maxLines: 2,
+                            softWrap: true,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 4),
-                        child: Text(
-                          min.cargo,
-                          style: TextStyle(color: Colors.black54),
-                          overflow: TextOverflow.fade,
-                          maxLines: 2,
-                          softWrap: true,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 4),
+                          child: Text(
+                            min.cargo,
+                            style: TextStyle(color: Colors.black54),
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            softWrap: true,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 4),
-                        child: Text(
-                          min.instituicao,
-                          style: TextStyle(color: Colors.black54),
-                          overflow: TextOverflow.fade,
-                          maxLines: 2,
-                          softWrap: true,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 4),
+                          child: Text(
+                            min.instituicao,
+                            style: TextStyle(color: Colors.black54),
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            softWrap: true,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Padding(
                     padding:
