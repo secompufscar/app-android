@@ -30,7 +30,7 @@ class DescontosWidget extends StatelessWidget {
           "X SECOMP em 3 tipos de hambúrgueres artesanais (carne, frango e vegano)",
       obs:
           "Preço padrão: R\$ 24,90\nApresentando Cracha do kit: 15,00 sem batata ou 19,90 com uma porção pequena de batata",
-      img: "https://secompufscar.com.br/static/images/logo-colorida.png",
+      img: "https://secompufscar.com.br/static/images/patrocinadores/jamaica_colorida.png",
     ),
     Desconto(
       loja: "Seu burguer",
@@ -39,10 +39,16 @@ class DescontosWidget extends StatelessWidget {
       img: "https://secompufscar.com.br/static/images/logo-colorida.png",
     ),
     Desconto(
+      loja: "Subway",
+      descricao: "Subway em dobro",
+      obs: "Válido para as unidades: Avenida São Carlos, Shopping Iguatemi e Havan\n(com apresentação do crachá)",
+      img: "https://secompufscar.com.br/static/images/patrocinadores/subway_colorida.png",
+    ),
+    Desconto(
       loja: "Nerd Stickers",
       descricao: "Cupom de 10% de desconto para os participantes: Secomp10%",
       obs: " ",
-      img: "https://secompufscar.com.br/static/images/logo-colorida.png",
+      img: "https://secompufscar.com.br/static/images/patrocinadores/nerd_colorida.png",
     ),
     Desconto(
       loja: "Macarronato",
