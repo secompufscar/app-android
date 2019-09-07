@@ -1,4 +1,5 @@
 import 'package:app_secomp/pages/cronograma/cronograma.dart';
+import 'package:app_secomp/pages/descontos/descontos.dart';
 import 'package:app_secomp/pages/equipe/equipe.dart';
 import 'package:app_secomp/pages/home/bloc_home.dart';
 
@@ -100,6 +101,11 @@ class _BaseState extends State<Base> {
             title: Text("Patrocinadores"),
             leading: Icon(Icons.star),
             onTap: () => _updatePage(PatrocinadoresScreen(), title: "Patrocinadores"),
+          ),
+          ListTile(
+            title: Text("Descontos"),
+            leading: Icon(Icons.shopping_cart),
+            onTap: () => _updatePage(DescontosWidget(), title: "Descontos"),
           ),
           ListTile(
             title: Text("Sobre"),
