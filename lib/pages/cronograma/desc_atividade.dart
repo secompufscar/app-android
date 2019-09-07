@@ -43,7 +43,6 @@ class AtividadePage extends StatelessWidget {
     return Scaffold(
       appBar: GradientAppBar(title: Text(getTipoAtividade())),
       body: Material(
-        color: Colors.white,
         child: ListView(
           physics: ClampingScrollPhysics(),
           shrinkWrap: true,
@@ -67,32 +66,6 @@ class AtividadePage extends StatelessWidget {
                             softWrap: true,
                           ),
                         ),
-                        new ListView.builder(
-                            shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
-                            itemCount: atv.ministrantes.length,
-                            itemBuilder: (BuildContext ctxt, int index) =>
-                                _buildMinistrante(atv.ministrantes[index])),
-                        new Row(children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            child: Text(
-                              atv.inicio != null
-                                  ? TimeOfDay.fromDateTime(atv.inicio)
-                                      .format(context)
-                                  : " ",
-                              style: new TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Text(
-                              atv.local,
-                              style: new TextStyle(color: Colors.grey),
-                            ),
-                          ),
-                        ]),
                       ],
                     ),
                   ),
@@ -100,25 +73,52 @@ class AtividadePage extends StatelessWidget {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: Text(
+                atv.descricao,
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  height: 1.25,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            new Row(children: <Widget>[
+              Padding(
+                padding:
+                    const EdgeInsets.all(16),
+                child: Text(
+                  atv.inicio != null
+                      ? TimeOfDay.fromDateTime(atv.inicio).format(context)
+                      : " ",
+                  style: new TextStyle(color: Colors.grey, fontSize: 16),
+                ),
+              ),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  atv.local,
+                  style: new TextStyle(color: Colors.grey, fontSize: 16),
+                ),
+              ),
+            ]),
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               child: Text(
-                "Descrição",
-                textAlign: TextAlign.left,
+                "Ministrante(s)",
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-              child: Text(
-                atv.descricao,
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
+            new ListView.builder(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                itemCount: atv.ministrantes.length,
+                itemBuilder: (BuildContext ctxt, int index) =>
+                    _buildMinistrante(atv.ministrantes[index])),
           ],
         ),
       ),
