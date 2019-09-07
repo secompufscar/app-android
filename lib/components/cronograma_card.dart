@@ -27,10 +27,19 @@ class CronogramaCard extends StatelessWidget {
           return new Icon(Icons.supervisor_account, color: Colors.lightBlue);
           break;
         case Tipo.Coffee:
-          return new Icon(Icons.opacity, color: Colors.orange[300]);
+          return new Icon(Icons.free_breakfast, color: Colors.orange[300]);
           break;
-        case Tipo.Institucional:
-          return new Icon(Icons.flag, color: Colors.greenAccent);
+        case Tipo.PalestraEmpresarial:
+          return new Icon(Icons.business, color: Colors.indigo);
+          break;
+        case Tipo.FeiraProjeto:
+          return new Icon(Icons.public, color: Colors.teal);
+          break;
+        case Tipo.PS:
+          return new Icon(Icons.card_travel, color: Colors.greenAccent);
+          break;
+        case Tipo.Outro:
+          return new Icon(Icons.memory, color: Colors.blueGrey);
           break;
         default:
           return Container();

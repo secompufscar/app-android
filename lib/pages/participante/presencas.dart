@@ -46,13 +46,19 @@ class PresencasScreen extends StatelessWidget {
         return "Workshop";
         break;
       case Tipo.MesaRedonda:
-        return "Mesa Redonda";
+        return "Mesa-redonda";
         break;
       case Tipo.Coffee:
-        return "Coffee Break";
+        return "Coffee-break";
         break;
-      case Tipo.Institucional:
-        return "Institucional";
+      case Tipo.PS:
+        return "Processo Seletivo";
+        break;
+      case Tipo.FeiraProjeto:
+        return "Feira de Projetos";
+        break;
+      case Tipo.PalestraEmpresarial:
+        return "Palestra Empresarial";
         break;
       default:
         return "Outro";

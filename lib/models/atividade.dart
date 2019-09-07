@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'ministrante.dart';
 
-enum Tipo { Palestra, Minicurso, Workshop, MesaRedonda, Coffee, Institucional, Outro }
+enum Tipo { Palestra, Minicurso, Workshop, MesaRedonda, Coffee, PS, FeiraProjeto, PalestraEmpresarial, Outro }
 
 class Atividade{
   final Tipo tipo;
@@ -41,12 +39,24 @@ class Atividade{
       case "Mesa Redonda":
         tipo = Tipo.MesaRedonda;
         break;
+      case "Processo Seletivo":
+        tipo = Tipo.PS;
+        break;
+      case "Workshop":
+        tipo = Tipo.Workshop;
+        break;
+      case "Feira de Projetos":
+        tipo = Tipo.FeiraProjeto;
+        break;
+      case "Palestra Empresarial":
+        tipo = Tipo.PalestraEmpresarial;
+        break;
       default:
         tipo = Tipo.Outro;
     }
 
     if(json['titulo'] != null)
-      if(json['titulo'].contains("Coffe")) 
+      if(json['titulo'].contains("Coffee")) 
         tipo = Tipo.Coffee;
     
     List<Ministrante> listMinistrantes = [];
