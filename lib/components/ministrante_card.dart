@@ -1,6 +1,8 @@
 import 'package:app_secomp/models/ministrante.dart';
 import 'package:app_secomp/pages/cronograma/desc_ministrante.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MinistranteCard extends Container {
   MinistranteCard({this.min});
@@ -21,13 +23,23 @@ class MinistranteCard extends Container {
             Padding(
               padding: const EdgeInsets.all(6),
               child: ClipOval(
-                child: Image.network(
-                  "https://secompufscar.com.br/uploads/fotos_ministrantes/" +
-                      min.img,
-                  // "https://secompufscar.com.br/static/images/logo-colorida.png",
+                child: CachedNetworkImage(
+                  imageUrl:
+                      "https://secompufscar.com.br/static/images/ministrantes/" +
+                          min.img,
                   fit: BoxFit.cover,
                   width: 80,
                   height: 80,
+                  placeholder: (context, url) => Container(
+                    width: 80,
+                    height: 80,
+                    child: Center(
+                      child: SpinKitChasingDots(
+                        color: Colors.cyan,
+                        size: 30,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -35,8 +47,9 @@ class MinistranteCard extends Container {
               child: new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Flexible(fit: FlexFit.tight,
-                                      child: Column(
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[

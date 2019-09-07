@@ -1,6 +1,8 @@
 import 'package:app_secomp/components/ministrante_card.dart';
 import 'package:app_secomp/models/ministrante.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 class MinistrantePage extends StatelessWidget {
@@ -22,12 +24,23 @@ class MinistrantePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: ClipOval(
-                    child: Image.network(
-                      "https://secompufscar.com.br/uploads/fotos_ministrantes/" + min.img,
-                      // "https://secompufscar.com.br/static/images/logo-colorida.png",
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://secompufscar.com.br/static/images/ministrantes/" +
+                              min.img,
                       fit: BoxFit.cover,
-                      width: 110,
-                      height: 110,
+                      width: 80,
+                      height: 80,
+                      placeholder: (context, url) => Container(
+                        width: 80,
+                        height: 80,
+                        child: Center(
+                          child: SpinKitChasingDots(
+                            color: Colors.cyan,
+                            size: 30,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),

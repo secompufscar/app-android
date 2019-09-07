@@ -1,5 +1,7 @@
 import 'package:app_secomp/models/desconto.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DescontosWidget extends StatelessWidget {
   List<Desconto> descontos = [
@@ -61,10 +63,13 @@ class DescontosWidget extends StatelessWidget {
             child: Container(
               height: 120,
               width: 120,
-              child: Image.network(
-                desconto.img,
-                fit: BoxFit.contain,
-              ),
+              child: CachedNetworkImage(
+            imageUrl: desconto.img,
+            placeholder: (context, url) => SpinKitChasingDots(
+              color: Colors.cyan,
+              size: 30,
+            ),
+          ),
             ),
           ),
           Flexible(

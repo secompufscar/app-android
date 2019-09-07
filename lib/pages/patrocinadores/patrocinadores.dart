@@ -102,11 +102,14 @@ GridView imageList(List<Patrocinador> listLinks) {
         height: 140,
         width: 170,
         child: Center(
-          child: CachedNetworkImage(
-            imageUrl: '${listLinks[index]}',
-            placeholder: (context, url) => SpinKitChasingDots(
-              color: Colors.cyan,
-              size: 30,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: CachedNetworkImage(
+              imageUrl: 'https://secompufscar.com.br/static/images/patrocinadores/${listLinks[index].img}',
+              placeholder: (context, url) => SpinKitChasingDots(
+                color: Colors.cyan,
+                size: 30,
+              ),
             ),
           ),
         ),

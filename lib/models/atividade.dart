@@ -28,6 +28,10 @@ class Atividade{
       this.local,
       this.descricao});
 
+  static String _removeBlankSpace(String str) {
+    return str.replaceAll(RegExp(r" "), "_");
+  }
+
   factory Atividade.fromJson(Map<String, dynamic> json) {
     
     Tipo tipo;
@@ -56,7 +60,7 @@ class Atividade{
             "${m['primeiro_nome']} ${m['sobrenome']}",
             m['cargo'] ?? "-",
             m['instituicao'] ?? "-",
-            m['img'] ?? "secomp.png",
+            m['foto'] != null ? _removeBlankSpace(m['foto']) :  "secomp.png",
             m['biografia'] ?? "Sem informações"));
       }
     } else {
