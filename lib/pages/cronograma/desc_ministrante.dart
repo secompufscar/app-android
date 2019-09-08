@@ -21,18 +21,18 @@ class MinistrantePage extends StatelessWidget {
             Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   child: ClipOval(
                     child: CachedNetworkImage(
                       imageUrl:
                           "https://secompufscar.com.br/static/images/ministrantes/" +
                               min.img,
                       fit: BoxFit.cover,
-                      width: 80,
-                      height: 80,
+                      width: 140,
+                      height: 140,
                       placeholder: (context, url) => Container(
-                        width: 80,
-                        height: 80,
+                        width: 140,
+                        height: 140,
                         child: Center(
                           child: SpinKitChasingDots(
                             color: Colors.cyan,
