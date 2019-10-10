@@ -8,6 +8,7 @@
 .buildlog/
 .history
 .svn/
+app_secomp.jks
 
 #Credentials
 lib/credentials.dart
@@ -31,6 +32,7 @@ lib/credentials.dart
 /build/
 
 # Android related
+**/android/key.properties
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
 **/android/captures/

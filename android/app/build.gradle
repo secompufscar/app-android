@@ -13,12 +13,18 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = 8
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '7.0.1'
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+   keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 apply plugin: 'com.android.application'
@@ -39,7 +45,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "br.com.secompufscar.app_secomp"
+        applicationId "br.com.secompufscar.app"
         minSdkVersion 16
         targetSdkVersion 28
         multiDexEnabled true
@@ -48,13 +54,26 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
-        }
-    }
+    signingConfigs {
+       release {
+           keyAlias keystoreProperties['keyAlias']
+           keyPassword keystoreProperties['keyPassword']
+           storeFile file(keystoreProperties['storeFile'])
+           storePassword keystoreProperties['storePassword']
+       }
+   }
+   
+   buildTypes {
+       release {
+           signingConfig signingConfigs.release
+
+           minifyEnabled true
+           useProguard true
+
+           proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+       }
+   }
+
 }
 
 flutter {

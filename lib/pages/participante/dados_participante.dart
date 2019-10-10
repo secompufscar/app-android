@@ -67,7 +67,7 @@ class DadosParticipante extends StatelessWidget {
               ),
               OutlineButton(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                child: Text("Atualizar Dados"),
+                child: Text("Atualizar"),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CamposLogin()));
