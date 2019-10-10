@@ -12,7 +12,7 @@ import 'dart:io' show Platform;
 import 'package:url_launcher/url_launcher.dart';
 
 class Sobre extends StatelessWidget {
-  final String versao = "1.0.0";
+  final String versao = "7.0.1";
 
   void _likeOnFacebook() async {
     if (Platform.isAndroid) {
