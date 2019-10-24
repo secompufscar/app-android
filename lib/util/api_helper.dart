@@ -29,7 +29,6 @@ class APIHelper {
         return Future.error('Failed to load');
       }
     } catch (e) {
-      print("Error: $e");
       return [];
     }
   }
@@ -49,20 +48,13 @@ class APIHelper {
         ),
       );
 
-      print("passou aqui");
-
       if (response.statusCode == 200) {
         if (response.data.toString() == "ERRO: senha inválida") {
-          print("senha inválida");
           return Future.error("senha");
         } else if (response.data.toString() == "Usuário inexistente") {
-          print("usuário inexistente");
           return Future.error("inexistente");
         }
-        print('asfsfsa');
         Map<String, dynamic> dados = response.data;
-        // print(dados.toString());
-        print("chegou aqui tbm");
         return Participante(
           nome: dados['primeiro_nome'] + ' ' + dados['sobrenome'],
           camisetas: dados['camiseta'],
@@ -71,11 +63,9 @@ class APIHelper {
           uuid: dados['uuid'],
         );
       } else {
-        print("outro erro no login");
         return Future.error('erro participante');
       }
     } catch (e) {
-      print("fail login: $e");
       return Future.error('Fail: $e');
     }
   }
