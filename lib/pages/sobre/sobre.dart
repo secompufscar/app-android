@@ -14,6 +14,9 @@ import 'package:url_launcher/url_launcher.dart';
 class Sobre extends StatelessWidget {
   final String versao = "7.0.1";
 
+  /* As funções _likeOnFacebook, _likeOnInstagram, _likeOnTwitter, _sendEmail
+     só funcionam em Android. Para iOS, considere usar url_launcher e dart:io  */
+
   void _likeOnFacebook() async {
     if (Platform.isAndroid) {
       AndroidIntent browserIntent = AndroidIntent(
@@ -25,7 +28,6 @@ class Sobre extends StatelessWidget {
           data: 'fb://facewebmodal/f?href=https://facebook.com/secompufscar');
       try {
         await facebookIntent.launch();
-        print("foi pelo face");
       } catch (e) {
         await browserIntent.launch();
         print("foi pelo browser");
@@ -45,10 +47,8 @@ class Sobre extends StatelessWidget {
           data: 'https://instagram.com/_u/secompufscar');
       try {
         await instagramIntent.launch();
-        print("foi pelo insta");
       } catch (e) {
         await browserIntent.launch();
-        print("foi pelo browser");
       }
     }
   }
@@ -65,10 +65,8 @@ class Sobre extends StatelessWidget {
           data: 'twitter://user?user=secompufscar');
       try {
         await twitterIntent.launch();
-        print("foi pelo twitter");
       } catch (e) {
         await browserIntent.launch();
-        print("foi pelo browser");
       }
     }
   }
@@ -117,9 +115,6 @@ class Sobre extends StatelessWidget {
           ),
         ),
         divisao,
-        //LINKS:
-        // os prints são apenas para ter uma action (serve também para testar)
-        // depois serão substituídas pela ação real.
         TextButton("A SECOMP",
             action: () => Navigator.push(context,
                 MaterialPageRoute(builder: (context) => SobreSecomp()))),

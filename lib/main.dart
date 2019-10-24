@@ -16,7 +16,6 @@ class AppSecomp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    
     final FirebaseMessaging _fcm = FirebaseMessaging();
     _fcm.subscribeToTopic('noticias');
 
@@ -40,7 +39,10 @@ class AppSecomp extends StatelessWidget {
               snapshot.hasData ? snapshot.data : Container(),
         ),
       ),
-      blocs: [
+      /* Injeções dos Bloc 
+        Toda vez que for criado um novo bloc é necessário
+        inserir nesse lista */
+      blocs: [ 
         Bloc((i) => BlocHome()),
         Bloc((i) => BlocCronograma()),
         Bloc((i) => BlocParticipante())
