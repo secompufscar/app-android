@@ -38,13 +38,13 @@ $ flutter run
     - main.dart: apenas para iniciar o aplicativo
     - base.dart: é o layout base do aplicativo. Contém o Scaffold com AppBar e Drawer
     - colors.dart: cores padrão da SECOMP 
-- ``/lib/routes``
-    - Cada arquivo nesse diretório corresponde a uma página
+- ``/lib/pages``
+    - Cada diretório contém arquivos relacionados a uma página
 - ``/lib/models``
     - Contém as classes com os dados que serão usados no aplicativo
 - ``/lib/components``
     - São widgets personalizados pronto para usar em qualquer página
-- ``/lib/utils``
+- ``/lib/util``
     - Contém classes que facilitam o acesso a serviços, por exemplo, acesso a API
 
 Os dirétórios ``/android`` e ``/ios`` são para configurar detalhes específicos da plataforma
