@@ -159,7 +159,10 @@ class _IntroState extends State<Intro> {
             TextButton(
               "Não quero entrar agora",
               style: TextStyle(fontSize: 14),
-              action: () => _pushTo(Base(first: HomePage(), title: "Área do Participante",)),
+              action: () => _pushTo(Base(
+                first: HomePage(),
+                title: "Área do Participante",
+              )),
             ),
             FloatingActionButton.extended(
               label: Text("Entre com sua conta!"),
@@ -173,21 +176,27 @@ class _IntroState extends State<Intro> {
 
     void _hideFab() {
       setState(() {
-        _fab = SizedBox(height: 80, width: 80,);
+        _fab = SizedBox(
+          height: 80,
+          width: 80,
+        );
       });
     }
 
     return Scaffold(
       body: Center(
         child: CarouselSlider(
-          onPageChanged: (page) => page == 2 ? _showFab() : _hideFab(),
-          viewportFraction: 0.9,
-          aspectRatio: 0.8,
-          autoPlay: true,
-          autoPlayInterval: Duration(seconds: 4),
-          enableInfiniteScroll: false,
-          enlargeCenterPage: true,
-          pauseAutoPlayOnTouch: Duration(seconds: 2),
+          options: CarouselOptions(
+            onPageChanged: (index, _) => index == 2 ? _showFab() : _hideFab(),
+            viewportFraction: 0.9,
+            aspectRatio: 0.8,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 4),
+            enableInfiniteScroll: false,
+            enlargeCenterPage: true,
+            pauseAutoPlayOnTouch: true,
+            // pauseAutoPlayOnTouch: Duration(seconds: 2),
+          ),
           items: _buildItemList(context).map(
             (item) {
               return Padding(
