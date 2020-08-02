@@ -1,10 +1,9 @@
-import 'package:app_secomp/components/text_button.dart';
-import 'package:app_secomp/pages/home/home.dart';
-import 'package:app_secomp/pages/login/login.dart';
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 
 import '../../base.dart';
+import '../../components/text_button.dart';
+import '../pages.dart';
 
 class Intro extends StatefulWidget {
   static Widget _buildItem({String image, Widget child}) => SizedBox.expand(
@@ -48,14 +47,14 @@ class _IntroState extends State<Intro> {
               ),
               Spacer(),
               Text(
-                "Bem vindo a",
+                'Bem vindo a',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
                 ),
               ),
               Text(
-                "X SECOMP",
+                'X SECOMP',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
@@ -70,14 +69,14 @@ class _IntroState extends State<Intro> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Palestras",
+                'Palestras',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
                     fontWeight: FontWeight.w900),
               ),
               Text(
-                "Todos os dias",
+                'Todos os dias',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
@@ -85,14 +84,14 @@ class _IntroState extends State<Intro> {
               ),
               Spacer(),
               Text(
-                "Minicursos",
+                'Minicursos',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
                     fontWeight: FontWeight.w900),
               ),
               Text(
-                "De 4 a 6 horas",
+                'De 4 a 6 horas',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
@@ -107,14 +106,14 @@ class _IntroState extends State<Intro> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                "Workshops",
+                'Workshops',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
                     fontWeight: FontWeight.w900),
               ),
               Text(
-                "Para aprender a prática",
+                'Para aprender a prática',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 32,
@@ -122,14 +121,14 @@ class _IntroState extends State<Intro> {
               ),
               Spacer(),
               Text(
-                "Feira empresarial",
+                'Feira empresarial',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
                     fontWeight: FontWeight.w900),
               ),
               Text(
-                "Aproximando oportunidades",
+                'Aproximando oportunidades',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 26,
@@ -157,17 +156,17 @@ class _IntroState extends State<Intro> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextButton(
-              "Não quero entrar agora",
+              'Não quero entrar agora',
               style: TextStyle(fontSize: 14),
               action: () => _pushTo(Base(
                 first: HomePage(),
-                title: "Área do Participante",
+                title: 'Área do Participante',
               )),
             ),
             FloatingActionButton.extended(
-              label: Text("Entre com sua conta!"),
+              label: Text('Entre com sua conta!'),
               icon: Icon(Icons.account_circle),
-              onPressed: () => _pushTo(CamposLogin()),
+              onPressed: () => _pushTo(LoginPage()),
             ),
           ],
         );

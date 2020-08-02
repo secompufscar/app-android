@@ -1,10 +1,10 @@
-import 'package:app_secomp/colors.dart';
-import 'package:app_secomp/pages/equipe/list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 
-class Equipe extends StatelessWidget {
+import '../../colors.dart';
+import 'list_widget.dart';
 
+class Equipe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

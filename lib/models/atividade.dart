@@ -1,9 +1,19 @@
 import 'ministrante.dart';
 
-enum Tipo { Palestra, Minicurso, Workshop, MesaRedonda, Coffee, PS, FeiraProjeto, PalestraEmpresarial, Outro }
+enum TipoAtividade {
+  Palestra,
+  Minicurso,
+  Workshop,
+  MesaRedonda,
+  Coffee,
+  PS,
+  FeiraProjeto,
+  PalestraEmpresarial,
+  Outro
+}
 
-class Atividade{
-  final Tipo tipo;
+class Atividade {
+  final TipoAtividade tipo;
   final String titulo;
   List<Ministrante> ministrantes;
   final DateTime inicio;
@@ -12,9 +22,8 @@ class Atividade{
   final String descricao;
 
   static DateTime getDate(String date) {
-    print(date);
     return DateTime.parse(
-          "2019-09-${date.substring(5, 7)} ${date.substring(17, 19)}:${date.substring(20, 22)}:00");
+        "2019-09-${date.substring(5, 7)} ${date.substring(17, 19)}:${date.substring(20, 22)}:00");
   }
 
   Atividade(
@@ -27,42 +36,40 @@ class Atividade{
       this.descricao});
 
   static String _removeBlankSpace(String str) {
-    return str.replaceAll(RegExp(r" "), "_");
+    return str.replaceAll(RegExp(r' '), '_');
   }
 
   factory Atividade.fromJson(Map<String, dynamic> json) {
-    
-    Tipo tipo;
-    switch (json['tipo']) {
-      case "Minicurso":
-        tipo = Tipo.Minicurso;
+    TipoAtividade tipo;
+    switch (json['tipo'] as String) {
+      case 'Minicurso':
+        tipo = TipoAtividade.Minicurso;
         break;
-      case "Palestra":
-        tipo = Tipo.Palestra;
+      case 'Palestra':
+        tipo = TipoAtividade.Palestra;
         break;
-      case "Mesa Redonda":
-        tipo = Tipo.MesaRedonda;
+      case 'Mesa Redonda':
+        tipo = TipoAtividade.MesaRedonda;
         break;
-      case "Processo Seletivo":
-        tipo = Tipo.PS;
+      case 'Processo Seletivo':
+        tipo = TipoAtividade.PS;
         break;
-      case "Workshop":
-        tipo = Tipo.Workshop;
+      case 'Workshop':
+        tipo = TipoAtividade.Workshop;
         break;
-      case "Feira de Projetos":
-        tipo = Tipo.FeiraProjeto;
+      case 'Feira de Projetos':
+        tipo = TipoAtividade.FeiraProjeto;
         break;
-      case "Palestra Empresarial":
-        tipo = Tipo.PalestraEmpresarial;
+      case 'Palestra Empresarial':
+        tipo = TipoAtividade.PalestraEmpresarial;
         break;
       default:
-        tipo = Tipo.Outro;
+        tipo = TipoAtividade.Outro;
     }
 
-    if(json['titulo'] != null)
-      if(json['titulo'].contains("Coffee")) 
-        tipo = Tipo.Coffee;
-    
+    if (json['titulo'] != null) if (json['titulo'].contains('Coffee'))
+      tipo = TipoAtividade.Coffee;
+
     List<Ministrante> listMinistrantes = [];
     if (json['ministrantes'].length > 0) {
       for (var m in json['ministrantes']) {
@@ -70,14 +77,12 @@ class Atividade{
             "${m['primeiro_nome']} ${m['sobrenome']}",
             m['cargo'] ?? "-",
             m['instituicao'] ?? "-",
-            m['foto'] != null ? _removeBlankSpace(m['foto']) :  "secomp.png",
+            m['foto'] != null ? _removeBlankSpace(m['foto']) : "secomp.png",
             m['biografia'] ?? "Sem informações"));
       }
     } else {
       listMinistrantes.add(Ministrante("SECOMP", " ", " ", "secomp.png", " "));
     }
-
-   
 
     return Atividade(
       tipo: tipo,
@@ -89,7 +94,4 @@ class Atividade{
       fim: json['fim'] != null ? getDate(json['fim']) : null,
     );
   }
-
 }
-
-

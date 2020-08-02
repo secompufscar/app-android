@@ -1,21 +1,13 @@
-import 'package:app_secomp/pages/cronograma/cronograma.dart';
-import 'package:app_secomp/pages/descontos/descontos.dart';
-import 'package:app_secomp/pages/equipe/equipe.dart';
-import 'package:app_secomp/pages/home/bloc_home.dart';
-
-import 'package:app_secomp/pages/login/login.dart';
-import 'package:app_secomp/pages/participante/bloc_participante.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:app_secomp/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+
+import 'bloc/blocs.dart';
+import 'colors.dart';
 import 'components/logo.dart';
-import 'package:app_secomp/pages/home/home.dart';
-import 'package:app_secomp/pages/sobre/sobre.dart';
-import 'package:app_secomp/pages/participante/participante.dart';
-import 'package:app_secomp/pages/patrocinadores/patrocinadores.dart';
+import 'pages/pages.dart';
+import 'repository/repositories.dart';
 
 class Base extends StatefulWidget {
   final Widget first;
@@ -30,31 +22,18 @@ class Base extends StatefulWidget {
 class _BaseState extends State<Base> {
   Widget _body;
   String _title;
-  final Firestore _db = Firestore.instance;
+  // final Firestore _db = Firestore.instance;
   final FirebaseMessaging _fcm = FirebaseMessaging();
-
-  final BlocHome _blocHome = BlocProvider.getBloc<BlocHome>();
-  final BlocParticipante _blocParticipante =
-      BlocProvider.getBloc<BlocParticipante>();
 
   @override
   void initState() {
+    super.initState();
     _body = widget.first;
     _title = widget.title;
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
-        print("onMessage: $message");
-        _blocHome.loadNoticias();
+        BlocProvider.of<NoticiasBloc>(context).add(NoticiasRefreshRequested());
       },
-    );
-  }
-
-  void _pushTo(Widget page) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => page,
-      ),
     );
   }
 
@@ -68,8 +47,6 @@ class _BaseState extends State<Base> {
       Navigator.pop(context);
     }
 
-    _blocHome.loadNoticias();
-
     Drawer _drawer = Drawer(
       child: ListView(
         children: <Widget>[
@@ -82,10 +59,14 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Área do Participante"),
             leading: Icon(Icons.person),
-            onTap: () => _blocParticipante.participanteController.value != null
-                ? _updatePage(ParticipanteScreen(),
-                    title: "Área do Participante")
-                : _pushTo(CamposLogin()),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => LoginPage(),
+                ),
+              );
+            },
           ),
           ListTile(
             title: Text("Cronograma"),
@@ -100,7 +81,8 @@ class _BaseState extends State<Base> {
           ListTile(
             title: Text("Patrocinadores"),
             leading: Icon(Icons.star),
-            onTap: () => _updatePage(PatrocinadoresScreen(), title: "Patrocinadores"),
+            onTap: () =>
+                _updatePage(PatrocinadoresScreen(), title: "Patrocinadores"),
           ),
           ListTile(
             title: Text("Descontos"),
@@ -122,10 +104,30 @@ class _BaseState extends State<Base> {
           _title,
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        gradient: LinearGradient(colors: [SecompColors.gradientStart, SecompColors.gradientEnd]),
+        gradient: LinearGradient(
+            colors: [SecompColors.gradientStart, SecompColors.gradientEnd]),
       ),
       drawer: _drawer,
       body: _body,
+    );
+  }
+}
+
+class LoginSplash extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) {
+        if (state.status != AuthenticationStatus.authenticated) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => LoginPage(),
+            ),
+          );
+        }
+      },
+      child: Container(),
     );
   }
 }

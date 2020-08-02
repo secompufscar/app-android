@@ -1,4 +1,4 @@
-import 'package:app_secomp/models/list_patrocinadores.dart';
+import 'list_patrocinadores.dart';
 
 class Patrocinador {
   String nome;
@@ -13,11 +13,13 @@ class Patrocinadores {
 
   Patrocinadores() {
     List<Patrocinador> ret = [];
-    List<Map<String,dynamic>> patrocinadores = PATROCINADORES;
+    List<Map<String, dynamic>> patrocinadores = PATROCINADORES;
     patrocinadores.forEach((patrocinador) {
-      ret.add(Patrocinador(cota: patrocinador['cota'], img: patrocinador['logo'], nome: patrocinador['nome']));
+      ret.add(Patrocinador(
+          cota: patrocinador['cota'],
+          img: patrocinador['logo'],
+          nome: patrocinador['nome']));
     });
-   
 
     list = ret;
   }
@@ -26,4 +28,3 @@ class Patrocinadores {
     return list.where((patrocinador) => patrocinador.cota == cota).toList();
   }
 }
-

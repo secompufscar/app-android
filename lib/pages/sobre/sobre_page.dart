@@ -1,15 +1,15 @@
-import 'package:app_secomp/components/logo.dart';
-import 'package:app_secomp/components/text_button.dart';
-import 'package:app_secomp/icons/secomp_social_icons.dart';
-import 'package:flutter/material.dart';
-import 'package:android_intent/android_intent.dart';
-import 'package:app_secomp/pages/sobre/sobre_ufscar.dart';
-import 'package:app_secomp/pages/sobre/sobre_dc.dart';
-import 'package:app_secomp/pages/sobre/sobre_secomp.dart';
-
 import 'dart:io' show Platform;
 
+import 'package:android_intent/android_intent.dart';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../components/logo.dart';
+import '../../components/text_button.dart';
+import '../../icons/secomp_social_icons.dart';
+import 'sobre_dc.dart';
+import 'sobre_secomp.dart';
+import 'sobre_ufscar.dart';
 
 class Sobre extends StatelessWidget {
   final String versao = "7.0.1";
@@ -72,8 +72,7 @@ class Sobre extends StatelessWidget {
   }
 
   void _sendEmail() async {
-    const url =
-        'mailto:marketing@secompufscar.com.br?subject=Contato SECOMP';
+    const url = 'mailto:marketing@secompufscar.com.br?subject=Contato SECOMP';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

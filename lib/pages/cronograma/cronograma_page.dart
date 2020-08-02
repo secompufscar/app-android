@@ -1,18 +1,15 @@
-import 'package:app_secomp/colors.dart';
-import 'package:app_secomp/models/atividade.dart';
-import 'package:app_secomp/pages/cronograma/bloc_cronograma.dart';
-import 'package:app_secomp/pages/cronograma/list_widget.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tab_bar_no_ripple/flutter_tab_bar_no_ripple.dart';
 
-class Cronograma extends StatelessWidget {
-  final BlocCronograma bloc = BlocProvider.getBloc<BlocCronograma>();
+import '../../bloc/blocs.dart';
+import '../../colors.dart';
+import '../../models/models.dart';
+import 'list_widget.dart';
 
+class Cronograma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAtividades();
-
     return DefaultTabController(
       length: 5,
       child: Padding(
@@ -36,11 +33,11 @@ class Cronograma extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Seg",
+                            'Seg',
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            "09/09",
+                            '09/09',
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -57,11 +54,11 @@ class Cronograma extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Ter",
+                            'Ter',
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            "10/09",
+                            '10/09',
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -78,11 +75,11 @@ class Cronograma extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Qua",
+                            'Qua',
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            "11/09",
+                            '11/09',
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -99,11 +96,11 @@ class Cronograma extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Qui",
+                            'Qui',
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            "12/09",
+                            '12/09',
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -120,11 +117,11 @@ class Cronograma extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            "Sex",
+                            'Sex',
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            "13/09",
+                            '13/09',
                             style: TextStyle(fontSize: 12),
                           ),
                         ],
@@ -136,26 +133,26 @@ class Cronograma extends StatelessWidget {
             ),
             body: Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: StreamBuilder(
-                stream: bloc.outAtividades,
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData || snapshot.data.isEmpty) {
+              child: BlocBuilder<AtividadesBloc, AtividadesState>(
+                builder: (context, state) {
+                  if (state is AtividadesLoadInProgress) {
                     return Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
+                  } else if (state is AtividadesLoadFailure) {
                     return Center(
                       child: GestureDetector(
-                        onTap: bloc.reload,
+                        onTap: () => BlocProvider.of<AtividadesBloc>(context)
+                            .add(AtividadesRequested()),
                         child: Container(
                           child: Padding(
                             padding: const EdgeInsets.all(32.0),
                             child: Text(
-                                "Ocorreu algum erro :( \nToque aqui para recarregar"),
+                                'Ocorreu algum erro :( \nToque aqui para recarregar'),
                           ),
                         ),
                       ),
                     );
-                  } else {
-                    List<Atividade> lista = snapshot.data;
+                  } else if (state is AtividadesLoadSuccess) {
+                    final lista = state.atividades;
                     List<Atividade> segunda = lista
                         .where(
                             (atv) => atv.inicio != null && atv.inicio.day == 9)

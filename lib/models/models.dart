@@ -1,0 +1,14 @@
+export 'atividade.dart';
+export 'desconto.dart';
+export 'email.dart';
+export 'list_patrocinadores.dart';
+export 'logInDto.dart';
+export 'membro.dart';
+export 'membros.dart';
+export 'ministrante.dart';
+export 'noticia.dart';
+export 'participante.dart';
+export 'password.dart';
+export 'patrocinador.dart';
+export 'presenca.dart';
+export 'profile_tab.dart';
