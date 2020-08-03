@@ -1,20 +1,18 @@
-import 'package:app_secomp/models/participante.dart';
-import 'package:app_secomp/pages/login/login.dart';
-import 'package:app_secomp/pages/participante/bloc_participante.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class DadosParticipante extends StatelessWidget {
-  final BlocParticipante bloc = BlocProvider.getBloc<BlocParticipante>();
+import '../../bloc/participante/participante_bloc.dart';
+import '../../models/participante.dart';
+import '../pages.dart';
 
+class DadosParticipanteTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: bloc.outParticipante,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          Participante participante = snapshot.data;
+    return BlocBuilder<ParticipanteBloc, ParticipanteState>(
+      builder: (context, state) {
+        if (state is ParticipanteLoadSuccess) {
+          Participante participante = state.participante;
 
           return ListView(
             padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
@@ -29,7 +27,7 @@ class DadosParticipante extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Center(
                   child: Material(
-                    child: QrImage(size: 200, data: participante.uuid),
+                    child: QrImage(size: 200, data: participante.id),
                   ),
                 ),
               ),
@@ -66,11 +64,14 @@ class DadosParticipante extends StatelessWidget {
                 height: 24,
               ),
               OutlineButton(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 child: Text("Atualizar"),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CamposLogin()));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
               ),
             ],

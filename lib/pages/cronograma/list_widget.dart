@@ -1,32 +1,26 @@
-import 'package:app_secomp/components/cronograma_card.dart';
-import 'package:app_secomp/models/atividade.dart';
-import 'package:app_secomp/pages/cronograma/cronograma.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 
-import 'bloc_cronograma.dart';
+import '../../components/cronograma_card.dart';
+import '../../models/models.dart';
 
 class ListCronograma extends StatelessWidget {
+  final List<Atividade> list;
 
-    final BlocCronograma bloc = BlocProvider.getBloc<BlocCronograma>();
-    final List<Atividade> list;
+  ListCronograma({this.list});
 
-    ListCronograma({this.list});
-  
   Widget _buildListAtividades(int index, List<Atividade> list) {
     return CronogramaCard(atv: list[index]);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-                physics: ClampingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: list.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    _buildListAtividades(index,list),
-              );
+      physics: ClampingScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: list.length,
+      itemBuilder: (BuildContext context, int index) =>
+          _buildListAtividades(index, list),
+    );
   }
 
   // @override
@@ -51,7 +45,7 @@ class ListCronograma extends StatelessWidget {
   //                   child: Padding(
   //                     padding: const EdgeInsets.all(32.0),
   //                     child: Text(
-  //                         "Ocorreu algum erro :( \nToque aqui para recarregar"),
+  //                         'Ocorreu algum erro :( \nToque aqui para recarregar'),
   //                   ),
   //                 ),
   //               ),

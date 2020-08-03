@@ -1,10 +1,10 @@
-import 'package:app_secomp/components/card_equipe.dart';
-import 'package:app_secomp/models/membro.dart';
 import 'package:flutter/material.dart';
 
+import '../../components/card_equipe.dart';
+import '../../models/membro.dart';
+
 class EquipeList extends StatelessWidget {
-  
-  final String diretoria; 
+  final String diretoria;
   Membros membros = Membros();
 
   EquipeList({this.diretoria});
@@ -14,7 +14,7 @@ class EquipeList extends StatelessWidget {
     final List<Membro> list = membros.getDiretoria(diretoria);
 
     return ListView(
-      children: <Widget> [
+      children: <Widget>[
         Center(child: Text(diretoria, style: TextStyle(fontSize: 20))),
         ListView.builder(
           shrinkWrap: true,

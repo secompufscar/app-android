@@ -1,0 +1,1 @@
+enum ProfileTab { dados, presencas }

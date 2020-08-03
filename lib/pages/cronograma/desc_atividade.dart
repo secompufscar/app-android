@@ -1,8 +1,9 @@
-import 'package:app_secomp/components/ministrante_card.dart';
-import 'package:app_secomp/models/atividade.dart';
-import 'package:app_secomp/models/ministrante.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+
+import '../../components/ministrante_card.dart';
+import '../../models/atividade.dart';
+import '../../models/ministrante.dart';
 
 class AtividadePage extends StatelessWidget {
   final Atividade atv;
@@ -17,28 +18,28 @@ class AtividadePage extends StatelessWidget {
 
     String getTipoAtividade() {
       switch (atv.tipo) {
-        case Tipo.Palestra:
+        case TipoAtividade.Palestra:
           return "Palestra";
           break;
-        case Tipo.Minicurso:
+        case TipoAtividade.Minicurso:
           return "Minicurso";
           break;
-        case Tipo.Workshop:
+        case TipoAtividade.Workshop:
           return "Workshop";
           break;
-        case Tipo.MesaRedonda:
+        case TipoAtividade.MesaRedonda:
           return "Mesa-redonda";
           break;
-        case Tipo.Coffee:
+        case TipoAtividade.Coffee:
           return "Coffee-break";
           break;
-        case Tipo.PS:
+        case TipoAtividade.PS:
           return "Processo Seletivo";
           break;
-        case Tipo.FeiraProjeto:
+        case TipoAtividade.FeiraProjeto:
           return "Feira de Projetos";
           break;
-        case Tipo.PalestraEmpresarial:
+        case TipoAtividade.PalestraEmpresarial:
           return "Palestra Empresarial";
           break;
         default:
@@ -91,8 +92,7 @@ class AtividadePage extends StatelessWidget {
             ),
             new Row(children: <Widget>[
               Padding(
-                padding:
-                    const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Text(
                   atv.inicio != null
                       ? TimeOfDay.fromDateTime(atv.inicio).format(context)

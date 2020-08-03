@@ -1,8 +1,9 @@
-import 'package:app_secomp/models/patrocinador.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter/material.dart';
-import 'package:app_secomp/pages/patrocinadores/button_patrocionadores.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import '../../models/patrocinador.dart';
+import 'button_patrocionadores.dart';
 
 bool _anime = false;
 bool _animeTwo = true;
@@ -26,19 +27,18 @@ class _PatrocinadoresScreenState extends State<PatrocinadoresScreen> {
   List<Patrocinador> listLinks;
 
   Expanded inicializacao(int tam, List<Patrocinador> listLinks) {
-  if (tam == 0) {
-    return Expanded(
-      child: imageList(patrocinadoresDiamante),
-      flex: 6,
-    );
-  } else {
-    return Expanded(
-      child: imageList(listLinks),
-      flex: 6,
-    );
+    if (tam == 0) {
+      return Expanded(
+        child: imageList(patrocinadoresDiamante),
+        flex: 6,
+      );
+    } else {
+      return Expanded(
+        child: imageList(listLinks),
+        flex: 6,
+      );
+    }
   }
-}
-
 
   _onTap() {
     setState(() {
@@ -105,7 +105,8 @@ GridView imageList(List<Patrocinador> listLinks) {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: CachedNetworkImage(
-              imageUrl: 'https://secompufscar.com.br/static/images/patrocinadores/${listLinks[index].img}',
+              imageUrl:
+                  'https://secompufscar.com.br/static/images/patrocinadores/${listLinks[index].img}',
               placeholder: (context, url) => SpinKitChasingDots(
                 color: Colors.cyan,
                 size: 30,
@@ -117,4 +118,3 @@ GridView imageList(List<Patrocinador> listLinks) {
     }),
   );
 }
-

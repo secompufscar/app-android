@@ -8,7 +8,7 @@
 .buildlog/
 .history
 .svn/
-app_secomp.jks
+*.jks
 
 #Credentials
 lib/credentials.dart
@@ -30,6 +30,7 @@ lib/credentials.dart
 .pub-cache/
 .pub/
 /build/
+.flutter-plugins-dependencies
 
 # Android related
 **/android/key.properties
@@ -65,6 +66,7 @@ lib/credentials.dart
 **/ios/Flutter/app.flx
 **/ios/Flutter/app.zip
 **/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 

@@ -1,8 +1,8 @@
-import 'package:app_secomp/models/atividade.dart';
-import 'package:app_secomp/pages/cronograma/desc_atividade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../models/atividade.dart';
+import '../pages/cronograma/desc_atividade.dart';
 import 'card.dart';
 
 class CronogramaCard extends StatelessWidget {
@@ -14,31 +14,31 @@ class CronogramaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget getTipo() {
       switch (atv.tipo) {
-        case Tipo.Palestra:
+        case TipoAtividade.Palestra:
           return new Icon(Icons.timeline, color: Colors.deepPurple);
           break;
-        case Tipo.Minicurso:
+        case TipoAtividade.Minicurso:
           return new Icon(Icons.attach_file, color: Colors.green);
           break;
-        case Tipo.Workshop:
+        case TipoAtividade.Workshop:
           return new Icon(Icons.alternate_email, color: Colors.blue);
           break;
-        case Tipo.MesaRedonda:
+        case TipoAtividade.MesaRedonda:
           return new Icon(Icons.supervisor_account, color: Colors.lightBlue);
           break;
-        case Tipo.Coffee:
+        case TipoAtividade.Coffee:
           return new Icon(Icons.free_breakfast, color: Colors.orange[300]);
           break;
-        case Tipo.PalestraEmpresarial:
+        case TipoAtividade.PalestraEmpresarial:
           return new Icon(Icons.business, color: Colors.indigo);
           break;
-        case Tipo.FeiraProjeto:
+        case TipoAtividade.FeiraProjeto:
           return new Icon(Icons.public, color: Colors.teal);
           break;
-        case Tipo.PS:
+        case TipoAtividade.PS:
           return new Icon(Icons.card_travel, color: Colors.greenAccent);
           break;
-        case Tipo.Outro:
+        case TipoAtividade.Outro:
           return new Icon(Icons.memory, color: Colors.blueGrey);
           break;
         default:
@@ -97,7 +97,6 @@ class CronogramaCard extends StatelessWidget {
                   ),
                 ),
               ),
-        
               new IconButton(
                 icon: Icon(Icons.arrow_forward_ios, size: 16),
                 onPressed: () {
