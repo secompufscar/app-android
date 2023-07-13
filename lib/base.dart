@@ -1,7 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
+// import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 import 'bloc/blocs.dart';
 import 'colors.dart';
@@ -68,11 +68,11 @@ class _BaseState extends State<Base> {
               );
             },
           ),
-          ListTile(
-            title: Text("Cronograma"),
-            leading: Icon(Icons.calendar_view_day),
-            onTap: () => _updatePage(Cronograma(), title: "Cronograma"),
-          ),
+          // ListTile(
+          //   title: Text("Cronograma"),
+          //   leading: Icon(Icons.calendar_view_day),
+          //   onTap: () => _updatePage(Cronograma(), title: "Cronograma"),
+          // ),
           ListTile(
             title: Text("Equipe"),
             leading: Icon(Icons.people),
@@ -89,23 +89,23 @@ class _BaseState extends State<Base> {
             leading: Icon(Icons.shopping_cart),
             onTap: () => _updatePage(DescontosWidget(), title: "Descontos"),
           ),
-          ListTile(
-            title: Text("Sobre"),
-            leading: Icon(Icons.info),
-            onTap: () => _updatePage(Sobre(), title: "Sobre"),
-          ),
+          // ListTile(
+          //   title: Text("Sobre"),
+          //   leading: Icon(Icons.info),
+          //   onTap: () => _updatePage(Sobre(), title: "Sobre"),
+          // ),
         ],
       ),
     );
 
     return Scaffold(
-      appBar: GradientAppBar(
+      appBar: AppBar(
         title: Text(
           _title,
           style: TextStyle(fontWeight: FontWeight.w700),
         ),
-        gradient: LinearGradient(
-            colors: [SecompColors.gradientStart, SecompColors.gradientEnd]),
+        // gradient: LinearGradient(
+        //     colors: [SecompColors.gradientStart, SecompColors.gradientEnd]),
       ),
       drawer: _drawer,
       body: _body,

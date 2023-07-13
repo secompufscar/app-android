@@ -55,10 +55,11 @@ class AppSecomp extends StatelessWidget {
     Future<Widget> getHomeWidget() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       bool entered = prefs.getBool('entered');
-      if (entered == null) {
-        prefs.setBool('entered', true);
-        return Intro();
-      } else
+      print(entered);
+      // if (entered == null) {
+      //   prefs.setBool('entered', true);
+      //   return Intro();
+      // } else
         return Base(
           first: HomePage(),
           title: "X SECOMP",

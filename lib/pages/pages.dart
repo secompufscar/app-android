@@ -1,10 +1,10 @@
-export 'cronograma/cronograma_page.dart';
+// export 'cronograma/cronograma_page.dart';
 export 'descontos/descontos_page.dart';
 export 'equipe/equipe_page.dart';
 export 'equipe/list_widget.dart';
 export 'home/home_page.dart';
-export 'intro/intro_page.dart';
+// export 'intro/intro_page.dart';
 export 'login/login_page.dart';
 export 'participante/participante_page.dart';
 export 'patrocinadores/patrocinadores_page.dart';
-export 'sobre/sobre_page.dart';
+// export 'sobre/sobre_page.dart';

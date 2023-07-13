@@ -1,56 +1,60 @@
-# App X SECOMP
+<h1 align="center">
+📄<br>App Android
+</h1>
 
-Aplicativo Mobile para a X Semana da Computação da UFSCar
+<p  align="center">
+Principal aplicativo da Secomp
+</p>
 
-## Como Rodar
+---
 
-Verifique se o flutter está instalado corretamente.
+### Requisitos
 
-```
-$ flutter doctor
-```
+-   [![git][git-logo]][git-url]
+-   [![android][android-logo]][android-url]
+-   [![flutter][flutter-logo]][flutter-url]
 
-Verifique se adicionou a variável de ambiente ``ANDROID_HOME`` e o caminho de instalação do flutter na variável ``PATH``.
-Para adicionar, adicione as seguintes linhas no arquivo ``~/.bashrc``:
+### Como rodar
 
-```
-export PATH="$PATH":"<caminho de instalação do Flutter>"
-export ANDROID_HOME="<caminho de instalação do Android SDK>"
-```
+1. Clone the repositório
+    ```sh
+    git clone https://github.com/secompufscar/app-android.git
+    ```
 
-Crie o arquivo ``lib/credentials.dart`` e adicione a seguinte linha:
-```
-const API_KEY=""
-```
+2. Acesse a pasta clonada
 
-Execute o aplicativo:
+    ```sh
+    cd ./app-android
+    ```
 
-```
-$ flutter run
-```
+3. Instale as dependências
 
+    ```sh
+    flutter pub get
+    ```
 
-## Organização dos diretórios
+4. Execute o programa
 
-- ``/assets``
-    - todo material gráfico que será usado no aplicativo
-- ``/lib`` 
-    - main.dart: apenas para iniciar o aplicativo
-    - base.dart: é o layout base do aplicativo. Contém o Scaffold com AppBar e Drawer
-    - colors.dart: cores padrão da SECOMP 
-- ``/lib/pages``
-    - Cada diretório contém arquivos relacionados a uma página
-- ``/lib/models``
-    - Contém as classes com os dados que serão usados no aplicativo
-- ``/lib/components``
-    - São widgets personalizados pronto para usar em qualquer página
-- ``/lib/util``
-    - Contém classes que facilitam o acesso a serviços, por exemplo, acesso a API
+    ```sh
+    flutter run
+    ```
 
-Os dirétórios ``/android`` e ``/ios`` são para configurar detalhes específicos da plataforma
+<div align="center">
+  <br/>
+  <br/>
+  <br/>
+    <div>
+      <h1>SECOMP UFSCAR</h1>
+      <sub>Copyright © 2023 - <a href="https://github.com/secompufsca">secompufscar</sub></a>
+    </div>
+    <br/>
+    <img src="https://avatars.githubusercontent.com/u/26929251?s=48&v=4" width="40" height="40"/>
+</div>
 
-----
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+[git-url]: https://git-scm.com/
+[git-logo]: https://img.shields.io/badge/Git-f14e32?style=for-the-badge&logo=git&logoColor=white
+[android-url]: https://developer.android.com/studio
+[android-logo]: https://img.shields.io/badge/Android.Studio-3ddc84?style=for-the-badge&logo=android&logoColor=white
+[flutter-url]: https://docs.flutter.dev/get-started/install/windows
+[flutter-logo]: https://img.shields.io/badge/flutter-1389fd?style=for-the-badge&logo=flutter&logoColor=white
+[demo]: assets/images/demo.gif
